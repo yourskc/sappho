@@ -46,7 +46,8 @@ while ($coll = mysql_fetch_array($result)) {
 
 ?>
                 </ul>
-                <h2><?php echo $set_title; ?></h2>
+            </div>
+            <h2><?php echo $set_title; ?></h2>
 <?php
 
 $sql = "SELECT image_id, filename, title, thumb_width, thumb_height FROM photo_image WHERE set_id='$set_id'";
@@ -58,7 +59,7 @@ while ($image = mysql_fetch_array($result)) {
     $x_pad = ($x < $thumbnail_size) ? ($thumbnail_size-$x)/2 : 0;
     $y_pad = ($y < $thumbnail_size) ? ($thumbnail_size-$y)/2 : 0;
 
-    echo "<div class=\"set_thumbnail\">";
+    echo "            <div class=\"set_thumbnail\">";
     echo "<a href=\"$sappho_path/photo/{$image["image_id"]}/\">";
     echo "<img src=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/c/{$image["filename"]}.jpg\" alt=\"{$image["title"]}\" style=\"margin: {$y_pad}px {$x_pad}px;\"/>";
     echo "</a></div>\n";
@@ -66,7 +67,6 @@ while ($image = mysql_fetch_array($result)) {
 };
 
 ?>
-            </div>
         </div>
     </body>
 </html>

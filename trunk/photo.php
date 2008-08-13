@@ -41,27 +41,26 @@ $image = mysql_fetch_array($result);
             <h2><?php echo $image["title"]; ?></h2>
 <?php
 
-echo "<img src=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/b/{$image["filename"]}.jpg\" alt=\"{$image["title"]}\" id=\"photo\" />\n";
+echo "            <img src=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/b/{$image["filename"]}.jpg\" alt=\"{$image["title"]}\" id=\"photo\" />\n";
 
-echo "<div id=\"exif\">\n";
-echo "    <div id=\"title\">photo information</div>\n";
-echo $image["exif_cameramodel"]."<br />\n";
-echo "shutter: ".$image["exif_exposuretime"]." s<br />\n";
-echo "<i>f</i>: ".$image["exif_fnumber"]."<br />\n";
-echo "iso: ".$image["exif_isospeedratings"]."<br />\n";
-echo "focal: ".$image["exif_focallength"]." mm<br />\n";
-echo ($image["exif_flash"]?"flash fired":"no flash")."<br />\n";
-echo $image["exif_datetimeoriginal"]."\n";
-echo "</div>\n";
+echo "            <div id=\"exif\">\n";
+echo "                <div id=\"title\">photo information</div>\n";
+echo "                {$image["exif_cameramodel"]}<br />\n";
+echo "                shutter: {$image["exif_exposuretime"]} s<br />\n";
+echo "                <i>f</i>: {$image["exif_fnumber"]}<br />\n";
+echo "                iso: {$image["exif_isospeedratings"]}<br />\n";
+echo "                focal: {$image["exif_focallength"]} mm<br />\n";
+echo "                ".($image["exif_flash"]?"flash fired":"no flash")."<br />\n";
+echo "                {$image["exif_datetimeoriginal"]}\n";
+echo "            </div>\n";
 
-echo "<div id=\"caption\">".nl2br($image["caption"])."</div>\n";
+echo "            <div id=\"caption\">".nl2br($image["caption"])."</div>\n";
 
-echo "<div id=\"link_next\"><a href=\"about:blank\">view next in set</a></div>\n";
+echo "            <div id=\"link_next\"><a href=\"about:blank\">view next in set</a></div>\n";
 
-echo "<div id=\"link_full\"><a href=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/a/{$image["filename"]}.jpg\">view in high resolution</a></div>\n";
+echo "            <div id=\"link_full\"><a href=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/a/{$image["filename"]}.jpg\">view in high resolution</a></div>\n";
 
 ?>
-            </div>
         </div>
     </body>
 </html>

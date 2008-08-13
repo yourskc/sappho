@@ -1,0 +1,192 @@
+* {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+}
+
+body {
+    background-color: white;
+
+    font-family: Cambria, Georgia, Times, Times New Roman, serif;
+    font-size: 1em;
+    line-height: 1.4em;
+    /* letter-spacing: 0.02em; */
+    word-spacing: 0.08em;
+    color: black;
+}
+
+a {
+    color: black;
+}
+
+img {
+    border: 0;
+    display: block;
+}
+
+#full {
+    width: 680px;
+    border-right: 1px #ccc dashed;
+    height: 100%;
+}
+
+#container {
+    padding: 20px;
+    width: 640px;
+}
+
+h1 {
+    margin: 0 0 0 0;
+    font-size: 1.4em;
+}
+
+h2 {
+    margin: 1em 0 0 0;
+    font-size: 1.2em;
+}
+
+h3 {
+    margin: 0.4em 0 0 0;
+    font-size: 1em;
+}
+
+h4 {
+    margin: 0 0 0 0;
+    font-size: 1em;
+    font-weight: normal;
+}
+
+p.small {
+    margin: 0.2em 0 0 0;
+    font-size: 0.6em;
+}
+
+p.small a {
+    color: #999;
+}
+
+#collections ul {
+    list-style: none;
+    margin: 0.8em 0 1.2em 0;
+}
+
+#collections li {
+	display: inline;
+	margin: 0 1em 0 0;
+}
+
+#collections li.bordered {
+    border-bottom: 1px dashed #ccc;
+    font-weight: bold;
+}
+
+li {
+    margin-left: 2em;
+}
+
+.success {
+    background-color: #33ff33;
+    font-style: italic;
+}
+
+/* STYLES FOR SET.PHP */
+
+div.set_thumbnail {
+    float: left;
+    margin: 20px 20px 0 0;
+    height: 120px;
+    width: 120px;
+    border: 1px solid #ccc;
+}
+
+/* STYLES FOR PHOTO.PHP */
+
+#photo {
+    display: block;
+    margin: 1.4em 0;
+}
+
+#exif {
+    float: right;
+    width: 14em;
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 1px gray dashed;
+    font-size: 0.8em;
+}
+
+#exif #title {
+    font-weight: bold;
+    padding-bottom: 0.2em;
+}
+
+#caption {
+    margin-bottom: 40px;
+}
+
+#link_next {
+    float: right;
+    font-size: 0.8em;
+    padding: 0 0 0 20px;
+}
+
+#link_full {
+    font-size: 0.8em;
+    padding: 0 20px 0 0;
+}
+
+/* MANAGEMENT BACK-END STYLES */
+
+#insert {
+    margin: 1em 0;
+}
+
+#edit table {
+    border-collapse: collapse;
+    line-height: 1em;
+}
+
+#edit table th {
+    font-weight: bold;
+    padding: 3px;
+    border: 1px gray inset;
+}
+
+#edit table td {
+    padding: 3px;
+    border: 1px gray inset;
+}
+
+
+#import table {
+    border-collapse: collapse;
+    line-height: 1em;
+    margin-top: 2em;
+}
+
+#import table th {
+    font-weight: bold;
+    padding: 3px;
+    border: 1px gray inset;
+}
+
+#import table td {
+    padding: 10px;
+    border: 1px gray inset;
+    vertical-align: top;
+}
+
+#import table td img {
+    display: block;
+}
+
+#import table td input {
+    font-family: arial, sans-serif;
+    font-size: 0.8em;
+    width: 20em;
+}
+
+#import table td textarea {
+    font-family: arial, sans-serif;
+    font-size: 0.8em;
+    width: 20em;
+}

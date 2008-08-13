@@ -22,7 +22,7 @@ list($coll_title) = mysql_fetch_row($result);
         </style>
     </head>
     <body>
-        <div id="full"><div id="container">
+        <div id="container">
             <h1><a href="<?php echo $sappho_path."\">".$sappho_title; ?></a></h1>
             <div id="collections">
                 <ul>
@@ -64,6 +64,6 @@ while ($set = mysql_fetch_array($result_b)) {
 };
 
 ?>
-        </div></div>
+        </div>
     </body>
 </html>

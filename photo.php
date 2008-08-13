@@ -36,7 +36,7 @@ $image = mysql_fetch_array($result);
         </style>
     </head>
     <body>
-        <div id="full"><div id="container">
+        <div id="container">
             <h1><a href="<?php echo $sappho_path."\">".$sappho_title; ?></a></h1>
             <h2><?php echo $image["title"]; ?></h2>
 <?php
@@ -62,6 +62,6 @@ echo "<div id=\"link_full\"><a href=\"http://$s3_bucket.s3.amazonaws.com/$s3_pat
 
 ?>
             </div>
-        </div></div>
+        </div>
     </body>
 </html>

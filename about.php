@@ -40,9 +40,9 @@ while ($coll = mysql_fetch_array($result)) {
 
 ?>
                 </ul>
-                <h2>about</h2>
-                <p>this is a photo album coded in php, organized in mysql, and driven by aws s3.</p>
             </div>
+            <h2>about</h2>
+            <p>this is a photo album coded in php, organized in mysql, and driven by aws s3.</p>
         </div>
     </body>
 </html>

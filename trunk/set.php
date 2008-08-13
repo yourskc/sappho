@@ -37,7 +37,7 @@ while ($coll = mysql_fetch_array($result)) {
     echo "                    ";
 
     if ($coll['collection_id'] == $coll_id) {
-        echo "<li class=\"bordered\">{$coll['title']}</li>\n";
+        echo "<li class=\"bolded\"><a href=\"$sappho_path/collection/{$coll['collection_id']}/\">{$coll['title']}</a></li>\n";
     } else {
         echo "<li><a href=\"$sappho_path/collection/{$coll['collection_id']}/\">{$coll['title']}</a></li>\n";
     };

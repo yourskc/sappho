@@ -1,0 +1,9 @@
+Options -Multiviews
+IndexOptions +FancyIndexing +FoldersFirst +SuppressDescription
+RewriteEngine On
+RewriteBase /path/to/sappho/
+
+RewriteRule ^collection/([0-9]*)/?$ collection.php?id=$1
+RewriteRule ^set/([0-9]*)/?$        set.php?id=$1
+RewriteRule ^photo/([0-9]*)/?$      photo.php?id=$1
+RewriteRule ^about/?$               about.php

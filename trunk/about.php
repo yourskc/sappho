@@ -16,7 +16,7 @@ require_once "global.php";
         </style>
     </head>
     <body>
-        <div id="full"><div id="container">
+        <div id="container">
             <h1><a href="<?php echo $sappho_path."\">".$sappho_title; ?></a></h1>
             <div id="collections">
                 <ul>
@@ -43,6 +43,6 @@ while ($coll = mysql_fetch_array($result)) {
                 <h2>about</h2>
                 <p>this is a photo album coded in php, organized in mysql, and driven by aws s3.</p>
             </div>
-        </div></div>
+        </div>
     </body>
 </html>

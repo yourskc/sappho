@@ -16,7 +16,7 @@ require_once "global.php";
         </style>
     </head>
     <body>
-        <div id="full"><div id="container">
+        <div id="container">
             <h1><a href="<?php echo $sappho_path."\">".$sappho_title; ?></a></h1>
 <?php
 
@@ -56,6 +56,6 @@ while ($coll = mysql_fetch_array($result_a)) {
 };
 
 ?>
-        </div></div>
+        </div>
     </body>
 </html>

@@ -26,6 +26,7 @@ img {
 #container {
     padding: 20px;
     width: 640px;
+    overflow: auto;
 }
 
 h1 {

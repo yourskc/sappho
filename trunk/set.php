@@ -11,9 +11,9 @@ require_once "global.php";
     <head>
 <?php
 $set_id = clean($_GET['id']);
-$sql = "SELECT title, collection_id FROM photo_set WHERE set_id='$set_id'";
+$sql = "SELECT title, body, collection_id FROM photo_set WHERE set_id='$set_id'";
 if (!$result = mysql_query($sql)) print_error();
-list($set_title, $coll_id) = mysql_fetch_row($result);
+list($set_title, $set_body, $coll_id) = mysql_fetch_row($result);
 ?>
         <title><?php echo $sappho_title." &mdash; ".$set_title; ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -67,6 +67,7 @@ while ($image = mysql_fetch_array($result)) {
 };
 
 ?>
+            <div id="set_info"><?php echo $set_body; ?></div>
         </div>
     </body>
 </html>

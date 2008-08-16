@@ -97,6 +97,15 @@ div.set_thumbnail {
     border: 1px solid #ccc;
 }
 
+#set_info {
+    clear: both;
+    width: 548px; /* the size of two thumbnails minus 20px */
+    margin: 20px 20px 20px 0;
+    padding: 20px 0;
+    font-size: 0.8em;
+    border-bottom: 1px dashed #ccc;
+}
+
 /* STYLES FOR PHOTO.PHP */
 
 #photo {

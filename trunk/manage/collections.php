@@ -72,12 +72,14 @@ if (!empty($_GET["edit"])) {
             <h1><a href="<?php echo $sappho_path; ?>/manage/"><?php echo $sappho_title; ?> management</a></h1>
             <h2>collections</h2>
             <h3>editing <i><?php echo $col["title"]; ?></i></h3>
-            <form action="collections.php" method="post">
-                <input type="text" name="title" value="<?php echo $col["title"]; ?>" /><br />
-                <textarea name="body"><?php echo $col["body"]; ?></textarea><br />
-                <input type="hidden" name="edit" value="<?php echo $col["collection_id"]; ?>" />
-                <input type="submit" />
-            </form>
+            <div id="edit">
+                <form action="collections.php" method="post">
+                    <input type="text" name="title" value="<?php echo $col["title"]; ?>" /><br />
+                    <textarea name="body" rows="8"><?php echo $col["body"]; ?></textarea><br />
+                    <input type="hidden" name="edit" value="<?php echo $col["collection_id"]; ?>" />
+                    <input type="submit" />
+                </form>
+            </div>
         </div>
     </body>
 </html>
@@ -105,12 +107,14 @@ if (isset($_GET["insert"])) {
             <h1><a href="<?php echo $sappho_path; ?>/manage/"><?php echo $sappho_title; ?> management</a></h1>
             <h2>collections</h2>
             <h3>inserting a new row</h3>
-            <form action="collections.php" method="post">
-                <input type="text" name="title" /><br />
-                <textarea name="body"></textarea><br />
-                <input type="hidden" name="insert" />
-                <input type="submit" />
-            </form>
+            <div id="edit">
+                <form action="collections.php" method="post">
+                    <input type="text" name="title" /><br />
+                    <textarea name="body" rows="8"></textarea><br />
+                    <input type="hidden" name="insert" />
+                    <input type="submit" />
+                </form>
+            </div>
         </div>
     </body>
 </html>
@@ -136,12 +140,14 @@ if (isset($_GET["insert"])) {
             <h1><a href="<?php echo $sappho_path; ?>/manage/"><?php echo $sappho_title; ?> management</a></h1>
             <h2>collections</h2>
             <div id="insert"><a href="collections.php?insert">insert new row</a></div>
-            <div id="edit">
+            <div id="list">
                 <table>
-                    <th>title</th>
-                    <th>body</th>
-                    <th>edit</th>
-                    <th>del</th>
+                    <tr>
+                        <th>title</th>
+                        <th>body</th>
+                        <th>edit</th>
+                        <th>del</th>
+                    </tr>
 <?php
 
 $sql = "SELECT collection_id, title, body   ".

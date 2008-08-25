@@ -76,23 +76,26 @@ if (!empty($_GET["edit"])) {
             <h1><a href="<?php echo $sappho_path; ?>/manage/"><?php echo $sappho_title; ?> management</a></h1>
             <h2>sets</h2>
             <h3>editing <i><?php echo $set["title"]; ?></i></h3>
-            <form action="sets.php" method="post">
-                <input type="text" name="title" value="<?php echo $set["title"]; ?>" /><br />
-                <textarea name="body"><?php echo $set["body"]; ?></textarea><br />
-                <select name="coll_id">
+            <div id="edit">
+                <form action="sets.php" method="post">
+                    <input type="text" name="title" value="<?php echo $set["title"]; ?>" /><br />
+                    <textarea name="body" rows="8"><?php echo $set["body"]; ?></textarea><br />
+                    <select name="coll_id">
+                        <option value="">---- choose a collection ----</option>
 <?php
     $sql = "SELECT collection_id, title FROM photo_collection ORDER BY title ASC";
     if (!$result = mysql_query($sql)) print_error();
     while (list($coll_id, $col_title) = mysql_fetch_row($result)) {
         if ($coll_id == $set["collection_id"]) { $sel = " selected"; }
         else { unset($sel); };
-        echo "    <option value=\"$coll_id\"$sel>$col_title</option>\n";
+        echo "                        <option value=\"$coll_id\"$sel>$col_title</option>\n";
     };
 ?>
-                </select><br />
-                <input type="hidden" name="edit" value="<?php echo $set["set_id"]; ?>" />
-                <input type="submit" />
-            </form>
+                    </select><br />
+                    <input type="hidden" name="edit" value="<?php echo $set["set_id"]; ?>" />
+                    <input type="submit" />
+                </form>
+            </div>
         </div>
     </body>
 </html>
@@ -120,23 +123,26 @@ if (isset($_GET["insert"])) {
             <h1><a href="<?php echo $sappho_path; ?>/manage/"><?php echo $sappho_title; ?> management</a></h1>
             <h2>sets</h2>
             <h3>inserting a new row</h3>
-            <form action="sets.php" method="post">
-                <input type="text" name="title" /><br />
-                <textarea name="body"></textarea><br />
-                <select name="coll_id">
+            <div id="edit">
+                <form action="sets.php" method="post">
+                    <input type="text" name="title" /><br />
+                    <textarea name="body" rows="8"></textarea><br />
+                    <select name="coll_id">
+                        <option value="">---- choose a collection ----</option>
 <?php
     $sql = "SELECT collection_id, title FROM photo_collection ORDER BY title ASC";
     if (!$result = mysql_query($sql)) print_error();
     while (list($coll_id, $col_title) = mysql_fetch_row($result)) {
         if ($coll_id == $set["collection_id"]) { $sel = " selected"; }
         else { unset($sel); };
-        echo "    <option value=\"$coll_id\"$sel>$col_title</option>\n";
+        echo "                        <option value=\"$coll_id\"$sel>$col_title</option>\n";
     };
 ?>
-                </select><br />
-                <input type="hidden" name="insert" />
-                <input type="submit" />
-            </form>
+                    </select><br />
+                    <input type="hidden" name="insert" />
+                    <input type="submit" />
+                </form>
+            </div>
         </div>
     </body>
 </html>
@@ -162,15 +168,17 @@ if (isset($_GET["insert"])) {
             <h1><a href="<?php echo $sappho_path; ?>/manage/"><?php echo $sappho_title; ?> management</a></h1>
             <h2>sets</h2>
             <div id="insert"><a href="sets.php?insert">insert new row</a></div>
-            <div id="edit">
+            <div id="list">
                 <table>
-                    <th>collection</th>
-                    <th>title</th>
-                    <th>body</th>
-                    <th>created</th>
-                    <th>updated</th>
-                    <th>edit</th>
-                    <th>del</th>
+                    <tr>
+                        <th>collection</th>
+                        <th>title</th>
+                        <th>body</th>
+                        <th>created</th>
+                        <th>updated</th>
+                        <th>edit</th>
+                        <th>del</th>
+                    </tr>
 <?php
 
 $sql = "SELECT photo_collection.title   AS col_title,   ".

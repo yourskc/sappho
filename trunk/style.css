@@ -148,22 +148,29 @@ div.set_thumbnail {
     margin: 1em 0;
 }
 
-#edit table {
+#list table {
     border-collapse: collapse;
     line-height: 1em;
 }
 
-#edit table th {
+#list table th {
     font-weight: bold;
     padding: 3px;
     border: 1px gray inset;
 }
 
-#edit table td {
+#list table td {
     padding: 3px;
     border: 1px gray inset;
 }
 
+#edit input {
+    width: 500px;
+}
+
+#edit textarea {
+    width: 500px;
+}
 
 #import table {
     border-collapse: collapse;

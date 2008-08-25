@@ -114,14 +114,14 @@ if (count($freshies) === 0) {
 
     foreach ($freshies as $id => $sizes) {
 
-        echo "                    <tr>\n";
-        echo "                        <td><img src=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/c/$id.jpg\" alt=\"$id\" /></td>\n";
-        echo "                        <td>\n";
-        echo "                            <input type=\"text\" name=\"title-$id\" /><br />\n";
-        echo "                            <textarea name=\"caption-$id\"></textarea><br />\n";
-        echo "                            <select name=\"set-$id\">$set_options</select>\n";
-        echo "                        </td>\n";
-        echo "                    </tr>\n";
+        echo "                        <tr>\n";
+        echo "                            <td><img src=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/c/$id.jpg\" alt=\"$id\" /></td>\n";
+        echo "                            <td>\n";
+        echo "                                <input type=\"text\" name=\"title-$id\" /><br />\n";
+        echo "                                <textarea name=\"caption-$id\"></textarea><br />\n";
+        echo "                                <select name=\"set-$id\">$set_options</select>\n";
+        echo "                            </td>\n";
+        echo "                        </tr>\n";
 
     };
 

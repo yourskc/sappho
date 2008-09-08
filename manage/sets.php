@@ -20,12 +20,14 @@ if (!empty($_GET["delete"])) {
 
 if (!empty($_POST["edit"])) {
 
-    $set_id  = clean($_POST["edit"]);
-    $coll_id = clean($_POST["coll_id"]);
-    $title   = clean($_POST["title"]);
-    $body    = clean($_POST["body"]);
+    $set_id      = clean($_POST["edit"]);
+    $coll_id     = clean($_POST["coll_id"]);
+    $search_path = clean($_POST["search_path"]);
+    $title       = clean($_POST["title"]);
+    $body        = clean($_POST["body"]);
     $sql = "UPDATE photo_set                ".
            "SET collection_id='$coll_id',   ".
+           "    search_path='$search_path', ".
            "    title='$title',             ".
            "    body='$body'                ".
            "WHERE set_id='$set_id'          ";
@@ -38,11 +40,13 @@ if (!empty($_POST["edit"])) {
 
 if (isset($_POST["insert"])) {
 
-    $coll_id = clean($_POST["coll_id"]);
-    $title   = clean($_POST["title"]);
-    $body    = clean($_POST["body"]);
+    $coll_id     = clean($_POST["coll_id"]);
+    $search_path = clean($_POST["search_path"]);
+    $title       = clean($_POST["title"]);
+    $body        = clean($_POST["body"]);
     $sql = "INSERT INTO photo_set           ".
            "SET collection_id='$coll_id',   ".
+           "    search_path='$search_path', ".
            "    title='$title',             ".
            "    body='$body'                ";
     if (!$result = mysql_query($sql)) print_error();
@@ -55,9 +59,13 @@ if (isset($_POST["insert"])) {
 if (!empty($_GET["edit"])) {
 
     $set_id = clean($_GET["edit"]);
-    $sql = "SELECT set_id, collection_id, title, body   ".
-           "FROM photo_set                              ".
-           "WHERE set_id='$set_id'                      ";
+    $sql = "SELECT set_id,          ".
+           "       collection_id,   ".
+           "       search_path,     ".
+           "       title,           ".
+           "       body             ".
+           "FROM photo_set          ".
+           "WHERE set_id='$set_id'  ";
     if (!$result = mysql_query($sql)) print_error();
     $set = mysql_fetch_array($result);
 
@@ -78,6 +86,7 @@ if (!empty($_GET["edit"])) {
             <h3>editing <i><?php echo $set["title"]; ?></i></h3>
             <div id="edit">
                 <form action="sets.php" method="post">
+                    <input type="text" name="search_path" value="<?php echo $set["search_path"]; ?>" /><br />
                     <input type="text" name="title" value="<?php echo $set["title"]; ?>" /><br />
                     <textarea name="body" rows="8"><?php echo $set["body"]; ?></textarea><br />
                     <select name="coll_id">
@@ -125,6 +134,7 @@ if (isset($_GET["insert"])) {
             <h3>inserting a new row</h3>
             <div id="edit">
                 <form action="sets.php" method="post">
+                    <input type="text" name="search_path" /><br />
                     <input type="text" name="title" /><br />
                     <textarea name="body" rows="8"></textarea><br />
                     <select name="coll_id">
@@ -172,6 +182,7 @@ if (isset($_GET["insert"])) {
                 <table>
                     <tr>
                         <th>collection</th>
+                        <th>search path</th>
                         <th>title</th>
                         <th>body</th>
                         <th>created</th>
@@ -183,6 +194,7 @@ if (isset($_GET["insert"])) {
 
 $sql = "SELECT photo_collection.title   AS col_title,   ".
        "       photo_set.set_id,                        ".
+       "       photo_set.search_path,                   ".
        "       photo_set.title,                         ".
        "       photo_set.body,                          ".
        "       photo_set.date_created,                  ".
@@ -196,6 +208,7 @@ if (!$result = mysql_query($sql)) print_error();
 while ($set = mysql_fetch_array($result)) {
     echo "                    <tr>\n";
     echo "                        <td>{$set["col_title"]}</td>\n";
+    echo "                        <td>{$set["search_path"]}</td>\n";
     echo "                        <td>{$set["title"]}</td>\n";
     echo "                        <td>{$set["body"]}</td>\n";
     echo "                        <td>{$set["date_created"]}</td>\n";

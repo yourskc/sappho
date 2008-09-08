@@ -21,10 +21,12 @@ if (!empty($_GET["delete"])) {
 if (!empty($_POST["edit"])) {
 
     $coll_id = clean($_POST["edit"]);
+    $search_path = clean($_POST["search_path"]);
     $title   = clean($_POST["title"]);
     $body    = clean($_POST["body"]);
     $sql = "UPDATE photo_collection         ".
-           "SET title='$title',             ".
+           "SET search_path='$search_path', ".
+           "    title='$title',             ".
            "    body='$body'                ".
            "WHERE collection_id='$coll_id'  ";
     if (!$result = mysql_query($sql)) print_error();
@@ -36,10 +38,12 @@ if (!empty($_POST["edit"])) {
 
 if (isset($_POST["insert"])) {
 
+    $search_path = clean($_POST["search_path"]);
     $title   = clean($_POST["title"]);
     $body    = clean($_POST["body"]);
     $sql = "INSERT INTO photo_collection    ".
-           "SET title='$title',             ".
+           "SET search_path='$search_path', ".
+           "    title='$title',             ".
            "    body='$body'                ";
     if (!$result = mysql_query($sql)) print_error();
 
@@ -51,9 +55,12 @@ if (isset($_POST["insert"])) {
 if (!empty($_GET["edit"])) {
 
     $coll_id = clean($_GET["edit"]);
-    $sql = "SELECT collection_id, title, body   ".
-           "FROM photo_collection               ".
-           "WHERE collection_id='$coll_id'      ";
+    $sql = "SELECT collection_id,           ".
+           "       search_path,             ".
+           "       title,                   ".
+           "       body                     ".
+           "FROM photo_collection           ".
+           "WHERE collection_id='$coll_id'  ";
     if (!$result = mysql_query($sql)) print_error();
     $col = mysql_fetch_array($result);
 
@@ -74,6 +81,7 @@ if (!empty($_GET["edit"])) {
             <h3>editing <i><?php echo $col["title"]; ?></i></h3>
             <div id="edit">
                 <form action="collections.php" method="post">
+                    <input type="text" name="search_path" value="<?php echo $set["search_path"]; ?>" /><br />
                     <input type="text" name="title" value="<?php echo $col["title"]; ?>" /><br />
                     <textarea name="body" rows="8"><?php echo $col["body"]; ?></textarea><br />
                     <input type="hidden" name="edit" value="<?php echo $col["collection_id"]; ?>" />
@@ -109,6 +117,7 @@ if (isset($_GET["insert"])) {
             <h3>inserting a new row</h3>
             <div id="edit">
                 <form action="collections.php" method="post">
+                    <input type="text" name="search_path" /><br />
                     <input type="text" name="title" /><br />
                     <textarea name="body" rows="8"></textarea><br />
                     <input type="hidden" name="insert" />
@@ -143,6 +152,7 @@ if (isset($_GET["insert"])) {
             <div id="list">
                 <table>
                     <tr>
+                        <th>search path</th>
                         <th>title</th>
                         <th>body</th>
                         <th>edit</th>
@@ -150,12 +160,13 @@ if (isset($_GET["insert"])) {
                     </tr>
 <?php
 
-$sql = "SELECT collection_id, title, body   ".
+$sql = "SELECT collection_id, search_path, title, body   ".
        "FROM photo_collection               ".
        "ORDER BY collection_id              ";
 if (!$result = mysql_query($sql)) print_error();
 while ($col = mysql_fetch_array($result)) {
     echo "                    <tr>\n";
+    echo "                        <td>{$col["search_path"]}</td>\n";
     echo "                        <td>{$col["title"]}</td>\n";
     echo "                        <td>{$col["body"]}</td>\n";
     echo "                        <td><a href=\"collections.php?edit={$col["collection_id"]}\">edit</a></td>\n";

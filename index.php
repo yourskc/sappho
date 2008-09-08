@@ -14,6 +14,7 @@ require_once "global.php";
         <style type="text/css">
             @import "<?php echo $sappho_path; ?>/style.css";
         </style>
+        <link rel="alternate" type="application/rss+xml" title="rss" href="<?php echo $sappho_path; ?>/rss/" />
     </head>
     <body>
         <div id="container">
@@ -58,7 +59,7 @@ while ($coll = mysql_fetch_array($result_a)) {
 };
 
 ?>
-            <div id="index_info">this is a <a href="http://code.google.com/p/sappho/">sappho</a> photo album.</div>
+            <div id="index_info">see <a href="recent/">recently added photos</a>. this is a <a href="http://code.google.com/p/sappho/">sappho</a> photo album.</div>
         </div>
     </body>
 </html>

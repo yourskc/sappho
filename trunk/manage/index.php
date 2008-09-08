@@ -27,6 +27,7 @@ if (isset($_GET["import_success"])) {
             <ul>
                 <li><a href="collections.php">collections</a></li>
                 <li><a href="sets.php">sets</a></li>
+                <li><a href="images.php">images</a></li>
                 <li><a href="import.php">import images</a></li>
             </ul>
         </div>

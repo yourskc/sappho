@@ -17,7 +17,7 @@ require_once "global.php";
     </head>
     <body>
         <div id="container">
-            <h1><a href="<?php echo $sappho_path."\">".$sappho_title; ?></a></h1>
+            <h1><?php echo $sappho_title; ?></h1>
 <?php
 
 // i can't figure out a better way to do this with joins. D:

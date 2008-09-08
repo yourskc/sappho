@@ -58,6 +58,7 @@ while ($coll = mysql_fetch_array($result_a)) {
 };
 
 ?>
+            <div id="index_info">this is a <a href="http://code.google.com/p/sappho/">sappho</a> photo album.</div>
         </div>
     </body>
 </html>

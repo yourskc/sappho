@@ -87,6 +87,14 @@ li {
     font-style: italic;
 }
 
+/* STYLES FOR INDEX.PHP */
+
+#index_info {
+    font-size: 0.6em;
+    margin-top: 2em;
+    border-top: 1px dashed #ccc;
+}
+
 /* STYLES FOR SET.PHP */
 
 div.set_thumbnail {

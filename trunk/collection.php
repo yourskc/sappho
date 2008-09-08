@@ -5,16 +5,41 @@
  *********************************/
 require_once "global.php";
 
+if (!empty($_GET['id'])) {
+
+    $coll_id = clean($_GET['id']);
+    $sql = "SELECT title                    ".
+           "FROM photo_collection           ".
+           "WHERE collection_id='$coll_id'  ";
+    if (!$result = mysql_query($sql)) print_error();
+    list($coll_title) = mysql_fetch_row($result);
+    if (mysql_num_rows($result) == 0) {
+        die("i don't know which collection you are looking for.");
+    };
+
+} else if (!empty($_GET['search_path'])) {
+
+    $search_path = clean($_GET['search_path']);
+    $sql = "SELECT collection_id,           ".
+           "       title                    ".
+           "FROM photo_collection           ".
+           "WHERE search_path='$search_path'";
+    if (!$result = mysql_query($sql)) print_error();
+    list($coll_id, $coll_title) = mysql_fetch_row($result);
+    if (mysql_num_rows($result) == 0) {
+        die("i don't know which collection you are looking for.");
+    };
+
+} else {
+
+    die("i don't know which collection you are looking for.");
+
+};
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head>
-<?php
-$coll_id = clean($_GET['id']);
-$sql = "SELECT title FROM photo_collection WHERE collection_id='$coll_id'";
-if (!$result = mysql_query($sql)) print_error();
-list($coll_title) = mysql_fetch_row($result);
-?>
         <title><?php echo $sappho_title." &mdash; ".$coll_title; ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <style type="text/css">
@@ -29,6 +54,7 @@ list($coll_title) = mysql_fetch_row($result);
 <?php
 
 $sql = "SELECT photo_collection.collection_id,  ".
+       "       photo_collection.search_path,    ".
        "       photo_collection.title           ".
        "FROM photo_collection                   ";
 if (!$result = mysql_query($sql)) print_error();
@@ -39,7 +65,7 @@ while ($coll = mysql_fetch_array($result)) {
     if ($coll['collection_id'] == $coll_id) {
         echo "<li class=\"bordered\">{$coll['title']}</li>\n";
     } else {
-        echo "<li><a href=\"$sappho_path/collection/{$coll['collection_id']}/\">{$coll['title']}</a></li>\n";
+        echo "<li><a href=\"$sappho_path/collection/{$coll['search_path']}/\">{$coll['title']}</a></li>\n";
     };
 
 };
@@ -48,6 +74,7 @@ echo "                </ul>\n";
 echo "            </div>\n";
 
 $sql = "SELECT photo_set.set_id,            ".
+       "       photo_set.search_path,       ".
        "       photo_set.title,             ".
        "       photo_set.body,              ".
        "       COUNT(*) AS num_photos       ".
@@ -58,8 +85,8 @@ $sql = "SELECT photo_set.set_id,            ".
 if (!$result_b = mysql_query($sql)) print_error();
 while ($set = mysql_fetch_array($result_b)) {
 
-    echo "            <h3><a href=\"$sappho_path/set/{$set['set_id']}/\">{$set[title]}</a></h3>\n";
-    echo "            <h4>{$set[body]}</h4>\n";
+    echo "            <h3><a href=\"$sappho_path/set/{$set['search_path']}/\">{$set['title']}</a></h3>\n";
+    echo "            <h4>{$set['body']}</h4>\n";
 
 };
 

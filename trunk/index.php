@@ -22,6 +22,7 @@ require_once "global.php";
 
 // i can't figure out a better way to do this with joins. D:
 $sql = "SELECT photo_collection.collection_id,  ".
+       "       photo_collection.search_path,    ".
        "       photo_collection.title,          ".
        "       COUNT(*) AS num_sets             ".
        "FROM photo_collection                   ".
@@ -33,6 +34,7 @@ while ($coll = mysql_fetch_array($result_a)) {
     echo "            <h2>{$coll[title]}</h2>\n";
 
     $sql = "SELECT photo_set.set_id,            ".
+           "       photo_set.search_path,       ".
            "       photo_set.title,             ".
            "       photo_set.body,              ".
            "       COUNT(*) AS num_photos       ".
@@ -44,13 +46,13 @@ while ($coll = mysql_fetch_array($result_a)) {
     if (!$result_b = mysql_query($sql)) print_error();
     while ($set = mysql_fetch_array($result_b)) {
 
-        echo "            <h3><a href=\"set/{$set['set_id']}/\">{$set[title]}</a></h3>\n";
-        echo "            <h4>{$set[body]}</h4>\n";
+        echo "            <h3><a href=\"set/{$set['search_path']}/\">{$set['title']}</a></h3>\n";
+        echo "            <h4>{$set['body']}</h4>\n";
 
     };
 
     if ($coll['num_sets'] > $num_sets_on_index) {
-        echo "            <p class=\"small\"><a href=\"collection/{$coll['collection_id']}/\">view all {$coll['num_sets']}</a></p>\n";
+        echo "            <p class=\"small\"><a href=\"collection/{$coll['search_path']}/\">view all {$coll['num_sets']}</a></p>\n";
     };
 
 };

@@ -5,16 +5,45 @@
  *********************************/
 require_once "global.php";
 
+if (!empty($_GET['id'])) {
+
+    $set_id = clean($_GET['id']);
+    $sql = "SELECT title,           ".
+           "       body,            ".
+           "       collection_id    ".
+           "FROM photo_set          ".
+           "WHERE set_id='$set_id'";
+    if (!$result = mysql_query($sql)) print_error();
+    list($set_title, $set_body, $coll_id) = mysql_fetch_row($result);
+    if (mysql_num_rows($result) == 0) {
+        die("i don't know which set you are looking for.");
+    };
+
+} else if (!empty($_GET['search_path'])) {
+
+    $search_path = clean($_GET['search_path']);
+    $sql = "SELECT set_id,                  ".
+           "       title,                   ".
+           "       body,                    ".
+           "       collection_id            ".
+           "FROM photo_set                  ".
+           "WHERE search_path='$search_path'";
+    if (!$result = mysql_query($sql)) print_error();
+    list($set_id, $set_title, $set_body, $coll_id) = mysql_fetch_row($result);
+    if (mysql_num_rows($result) == 0) {
+        die("i don't know which set you are looking for.");
+    };
+
+} else {
+
+    die("i don't know which set you are looking for.");
+
+};
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head>
-<?php
-$set_id = clean($_GET['id']);
-$sql = "SELECT title, body, collection_id FROM photo_set WHERE set_id='$set_id'";
-if (!$result = mysql_query($sql)) print_error();
-list($set_title, $set_body, $coll_id) = mysql_fetch_row($result);
-?>
         <title><?php echo $sappho_title." &mdash; ".$set_title; ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <style type="text/css">
@@ -29,6 +58,7 @@ list($set_title, $set_body, $coll_id) = mysql_fetch_row($result);
 <?php
 
 $sql = "SELECT photo_collection.collection_id,  ".
+       "       photo_collection.search_path,    ".
        "       photo_collection.title           ".
        "FROM photo_collection                   ";
 if (!$result = mysql_query($sql)) print_error();
@@ -37,9 +67,9 @@ while ($coll = mysql_fetch_array($result)) {
     echo "                    ";
 
     if ($coll['collection_id'] == $coll_id) {
-        echo "<li class=\"bolded\"><a href=\"$sappho_path/collection/{$coll['collection_id']}/\">{$coll['title']}</a></li>\n";
+        echo "<li class=\"bolded\"><a href=\"$sappho_path/collection/{$coll['search_path']}/\">{$coll['title']}</a></li>\n";
     } else {
-        echo "<li><a href=\"$sappho_path/collection/{$coll['collection_id']}/\">{$coll['title']}</a></li>\n";
+        echo "<li><a href=\"$sappho_path/collection/{$coll['search_path']}/\">{$coll['title']}</a></li>\n";
     };
 
 };

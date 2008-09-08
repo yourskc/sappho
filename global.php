@@ -32,7 +32,7 @@ $aws_secret = "123456789abcdefg";
 /*****************
  * CONFIGURATION *
  *****************/
-$sappho_path = "/path/to/sappho";   // no trailing slash
+$sappho_path = "http://www.domain.com/path/to/sappho";   // no trailing slash
 $sappho_title = "photo album";
 $num_sets_on_index = 3;
 $thumbnail_size = 120;

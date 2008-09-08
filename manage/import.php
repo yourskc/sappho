@@ -54,10 +54,11 @@ if (!empty($_POST)) {
         $thumb_height           = clean($exif["COMPUTED"]["Height"]);
 
         $sql = "INSERT INTO `photo_image`                               ".
-               "SET `filename`  ='$filename',                           ".
-               "    `set_id`    ='$set',                                ".
-               "    `title`     ='$title',                              ".
-               "    `caption`   ='$caption',                            ".
+               "SET `filename`              ='$filename',               ".
+               "    `set_id`                ='$set',                    ".
+               "    `title`                 ='$title',                  ".
+               "    `caption`               ='$caption',                ".
+               "    `date_imported`         = UNIX_TIMESTAMP(),         ".
                "    `exif_cameramodel`      ='$exif_cameramodel',       ".
                "    `exif_exposuretime`     ='$exif_exposuretime',      ".
                "    `exif_fnumber`          ='$exif_fnumber',           ".

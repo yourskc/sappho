@@ -25,6 +25,7 @@ CREATE TABLE `photo_image` (
   `filename` varchar(32) NOT NULL,
   `title` text NOT NULL,
   `caption` text NOT NULL,
+  `date_imported` int(11) NOT NULL,
   `exif_cameramodel` varchar(128) NOT NULL,
   `exif_exposuretime` varchar(128) NOT NULL,
   `exif_fnumber` varchar(128) NOT NULL,
@@ -35,7 +36,8 @@ CREATE TABLE `photo_image` (
   `thumb_width` int(11) NOT NULL,
   `thumb_height` int(11) NOT NULL,
   PRIMARY KEY  (`image_id`),
-  KEY `set_id` (`set_id`)
+  KEY `set_id` (`set_id`),
+  KEY `date_imported` (`date_imported`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -50,10 +52,7 @@ CREATE TABLE `photo_set` (
   `search_path` varchar(64) collate latin1_general_ci NOT NULL,
   `title` text collate latin1_general_ci NOT NULL,
   `body` text collate latin1_general_ci NOT NULL,
-  `date_created` int(11) NOT NULL,
-  `date_updated` int(11) NOT NULL,
   PRIMARY KEY  (`set_id`),
-  KEY `collection_id` (`collection_id`),
-  KEY `date_created` (`date_created`,`date_updated`),
-  KEY `search_path` (`search_path`)
+  UNIQUE KEY `search_path` (`search_path`),
+  KEY `collection_id` (`collection_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;

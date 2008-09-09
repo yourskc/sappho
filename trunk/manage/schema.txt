@@ -26,6 +26,7 @@ CREATE TABLE `photo_image` (
   `title` text NOT NULL,
   `caption` text NOT NULL,
   `date_imported` int(11) NOT NULL,
+  `set_order` mediumint(9) NOT NULL,
   `exif_cameramodel` varchar(128) NOT NULL,
   `exif_exposuretime` varchar(128) NOT NULL,
   `exif_fnumber` varchar(128) NOT NULL,
@@ -37,7 +38,8 @@ CREATE TABLE `photo_image` (
   `thumb_height` int(11) NOT NULL,
   PRIMARY KEY  (`image_id`),
   KEY `set_id` (`set_id`),
-  KEY `date_imported` (`date_imported`)
+  KEY `date_imported` (`date_imported`),
+  KEY `set_order` (`set_order`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

@@ -185,8 +185,6 @@ if (isset($_GET["insert"])) {
                         <th>search path</th>
                         <th>title</th>
                         <th>body</th>
-                        <th>created</th>
-                        <th>updated</th>
                         <th>edit</th>
                         <th>del</th>
                     </tr>
@@ -196,9 +194,7 @@ $sql = "SELECT photo_collection.title   AS col_title,   ".
        "       photo_set.set_id,                        ".
        "       photo_set.search_path,                   ".
        "       photo_set.title,                         ".
-       "       photo_set.body,                          ".
-       "       photo_set.date_created,                  ".
-       "       photo_set.date_updated                   ".
+       "       photo_set.body                           ".
        "FROM photo_set                                  ".
        "LEFT JOIN photo_collection                      ".
        "    USING ( collection_id )                     ".
@@ -211,8 +207,6 @@ while ($set = mysql_fetch_array($result)) {
     echo "                        <td>{$set["search_path"]}</td>\n";
     echo "                        <td>{$set["title"]}</td>\n";
     echo "                        <td>{$set["body"]}</td>\n";
-    echo "                        <td>{$set["date_created"]}</td>\n";
-    echo "                        <td>{$set["date_updated"]}</td>\n";
     echo "                        <td><a href=\"sets.php?edit={$set["set_id"]}\">edit</a></td>\n";
     echo "                        <td><a href=\"sets.php?delete={$set["set_id"]}\">del</a></td>\n";
     echo "                    </tr>\n";

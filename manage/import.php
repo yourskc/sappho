@@ -107,7 +107,7 @@ if (count($freshies) === 0) {
 <?php
 
     $set_options = "<option value=\"\">---- choose a set ----</option>";
-    $sql = "SELECT set_id, title FROM photo_set ORDER BY date_created DESC";
+    $sql = "SELECT set_id, title FROM photo_set";
     if (!$result = mysql_query($sql)) print_error();
     while (list($set_id, $set_title) = mysql_fetch_array($result)) {
         $set_options .= "<option value=\"$set_id\">$set_title</option>";

@@ -144,3 +144,5 @@ function new_files() {
  *************************/
 if (!$dbmscnx = @mysql_pconnect($dbms_host, $dbms_user, $dbms_pass)) print_error();
 if (!mysql_select_db($dbms_db)) print_error();
+
+?>

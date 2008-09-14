@@ -31,7 +31,7 @@ if (!empty($_POST["edit"])) {
            "SET search_path='$search_path', ".
            "    title='$title',             ".
            "    body='$body',               ".
-           "    sort='$sort'                ";
+           "    sort='$sort'                ".
            "WHERE collection_id='$coll_id'  ";
     if (!$result = mysql_query($sql)) print_error();
 

@@ -33,13 +33,14 @@ while ($coll = mysql_fetch_array($result_a)) {
 
     echo "            <h2>{$coll[title]}</h2>\n";
 
-    $sql = "SELECT set_id,              ".
-           "       search_path,         ".
-           "       title,               ".
-           "       body                 ".
-           "FROM photo_set              ".
-           "LIMIT $num_sets_on_index    ".
-           "ORDER BY date_updated DESC  ";
+    $sql = "SELECT set_id,                                  ".
+           "       search_path,                             ".
+           "       title,                                   ".
+           "       body                                     ".
+           "FROM photo_set                                  ".
+           "WHERE collection_id='{$coll["collection_id"]}'  ".
+           "ORDER BY date_updated DESC                      ".
+           "LIMIT $num_sets_on_index                        ";
     if (!$result_b = mysql_query($sql)) print_error();
     while ($set = mysql_fetch_array($result_b)) {
 
@@ -48,7 +49,7 @@ while ($coll = mysql_fetch_array($result_a)) {
 
     };
 
-    if ($coll['num_sets'] > $num_sets_on_index) {
+    if ($coll['sets'] > $num_sets_on_index) {
         echo "            <p class=\"small\"><a href=\"collection/{$coll['search_path']}/\">view all {$coll['sets']}</a></p>\n";
     };
 

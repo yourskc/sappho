@@ -6,9 +6,18 @@
 require_once "../global.php";
 
 
+
 if (!empty($_GET["delete"])) {
 
     $set_id = clean($_GET["delete"]);
+
+    $sql = "UPDATE photo_collection ".
+           "SET sets=sets-1         ".
+           "WHERE collection_id=(SELECT collection_id   ".
+           "                     FROM photo_set         ".
+           "                     WHERE set_id='$set_id')";
+    if (!$result = mysql_query($sql)) print_error();
+
     $sql = "DELETE FROM photo_set   ".
            "WHERE set_id='$set_id'  ";
     if (!$result = mysql_query($sql)) print_error();
@@ -16,6 +25,7 @@ if (!empty($_GET["delete"])) {
     header("Location: sets.php");
 
 };
+
 
 
 if (!empty($_POST["edit"])) {
@@ -38,6 +48,7 @@ if (!empty($_POST["edit"])) {
 };
 
 
+
 if (isset($_POST["insert"])) {
 
     $coll_id     = clean($_POST["coll_id"]);
@@ -51,9 +62,15 @@ if (isset($_POST["insert"])) {
            "    body='$body'                ";
     if (!$result = mysql_query($sql)) print_error();
 
+    $sql = "UPDATE photo_collection         ".
+           "SET sets=sets+1                 ".
+           "WHERE collection_id='$coll_id'  ";
+    if (!$result = mysql_query($sql)) print_error();
+
     header("Location: sets.php");
 
 };
+
 
 
 if (!empty($_GET["edit"])) {
@@ -115,6 +132,7 @@ if (!empty($_GET["edit"])) {
 };
 
 
+
 if (isset($_GET["insert"])) {
 
 ?>
@@ -134,8 +152,8 @@ if (isset($_GET["insert"])) {
             <h3>inserting a new row</h3>
             <div id="edit">
                 <form action="sets.php" method="post">
-                    <input type="text" name="search_path" /><br />
-                    <input type="text" name="title" /><br />
+                    <input type="text" name="search_path" value="search-path" /><br />
+                    <input type="text" name="title" value="title" /><br />
                     <textarea name="body" rows="8"></textarea><br />
                     <select name="coll_id">
                         <option value="">---- choose a collection ----</option>
@@ -163,6 +181,7 @@ if (isset($_GET["insert"])) {
 };
 
 
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
@@ -185,6 +204,7 @@ if (isset($_GET["insert"])) {
                         <th>search path</th>
                         <th>title</th>
                         <th>body</th>
+                        <th>sort</th>
                         <th>edit</th>
                         <th>del</th>
                     </tr>
@@ -207,6 +227,7 @@ while ($set = mysql_fetch_array($result)) {
     echo "                        <td>{$set["search_path"]}</td>\n";
     echo "                        <td>{$set["title"]}</td>\n";
     echo "                        <td>{$set["body"]}</td>\n";
+    echo "                        <td><a href=\"set_sort.php?set_id={$set["set_id"]}\">sort</a></td>\n";
     echo "                        <td><a href=\"sets.php?edit={$set["set_id"]}\">edit</a></td>\n";
     echo "                        <td><a href=\"sets.php?delete={$set["set_id"]}\">del</a></td>\n";
     echo "                    </tr>\n";

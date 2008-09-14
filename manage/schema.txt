@@ -9,8 +9,12 @@ CREATE TABLE `photo_collection` (
   `search_path` varchar(64) collate latin1_general_ci NOT NULL,
   `title` text collate latin1_general_ci NOT NULL,
   `body` longtext collate latin1_general_ci NOT NULL,
+  `sets` int(11) NOT NULL,
+  `sort` tinyint(4) NOT NULL,
   PRIMARY KEY  (`collection_id`),
-  KEY `search_path` (`search_path`)
+  KEY `search_path` (`search_path`),
+  KEY `sort_order` (`sort`),
+  KEY `sets` (`sets`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 -- --------------------------------------------------------
@@ -26,7 +30,7 @@ CREATE TABLE `photo_image` (
   `title` text NOT NULL,
   `caption` text NOT NULL,
   `date_imported` int(11) NOT NULL,
-  `set_order` mediumint(9) NOT NULL,
+  `sort` mediumint(9) NOT NULL default '0',
   `exif_cameramodel` varchar(128) NOT NULL,
   `exif_exposuretime` varchar(128) NOT NULL,
   `exif_fnumber` varchar(128) NOT NULL,
@@ -39,7 +43,7 @@ CREATE TABLE `photo_image` (
   PRIMARY KEY  (`image_id`),
   KEY `set_id` (`set_id`),
   KEY `date_imported` (`date_imported`),
-  KEY `set_order` (`set_order`)
+  KEY `set_order` (`sort`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -54,7 +58,10 @@ CREATE TABLE `photo_set` (
   `search_path` varchar(64) collate latin1_general_ci NOT NULL,
   `title` text collate latin1_general_ci NOT NULL,
   `body` text collate latin1_general_ci NOT NULL,
+  `images` int(11) NOT NULL default '0',
+  `date_updated` int(11) NOT NULL default '0',
   PRIMARY KEY  (`set_id`),
   UNIQUE KEY `search_path` (`search_path`),
-  KEY `collection_id` (`collection_id`)
+  KEY `collection_id` (`collection_id`),
+  KEY `photos` (`images`,`date_updated`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;

@@ -70,6 +70,12 @@ if (!empty($_POST)) {
                "    `thumb_height`          ='$thumb_height'            ";
         if (!$result = mysql_query($sql)) print_error();
 
+        $sql = "UPDATE photo_set                    ".
+               "SET images=images+1,                ".
+               "    date_updated=UNIX_TIMESTAMP()   ".
+               "WHERE set_id='$set'                 ";
+        if (!$result = mysql_query($sql)) print_error();
+
     };
 
     header("Location: index.php?import_success");

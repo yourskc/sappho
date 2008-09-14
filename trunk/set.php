@@ -86,7 +86,7 @@ $sql = "SELECT image_id,        ".
        "       title,           ".
        "       thumb_width,     ".
        "       thumb_height     ".
-       "       FROM photo_image ".
+       "FROM photo_image        ".
        "WHERE set_id='$set_id'  ".
        "ORDER BY sort           ";
 if (!$result = mysql_query($sql)) print_error();

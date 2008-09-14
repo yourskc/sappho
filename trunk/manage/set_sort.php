@@ -5,30 +5,41 @@
  *********************************/
 require_once "../global.php";
 
-if (empty($_REQUEST["set_id"])) {
 
-    die("you must apecify a set to sort!");
+
+if (!empty($_POST["set_id"])) {
+
+    foreach ($_POST as $key => $value) {
+
+        if (preg_match('@^sortable_([0-9]+)$@i', $key, $match)) {
+
+            $sql = "UPDATE photo_image SET sort='".clean($value)."' WHERE image_id='".clean($match[1])."'";
+            if (!$result = mysql_query($sql)) print_error();
+
+        };
+
+    };
+
+    die("sort order updated successfully.");
 
 };
 
-if (!empty($_POST["sort"])) {
 
-    print_r($_POST["sort"]);
 
-    die();
+if (empty($_GET["set_id"])) {
+
+    die("you must specify a set to sort!");
 
 };
+
+
 
 $set_id = clean($_GET["set_id"]);
-$sql = "SELECT set_id,          ".
-       "       collection_id,   ".
-       "       search_path,     ".
-       "       title,           ".
-       "       body             ".
+$sql = "SELECT title            ".
        "FROM photo_set          ".
        "WHERE set_id='$set_id'  ";
 if (!$result = mysql_query($sql)) print_error();
-$set = mysql_fetch_array($result);
+list($set_title) = mysql_fetch_array($result);
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -47,16 +58,14 @@ $set = mysql_fetch_array($result);
 
                 var req = new Request({
                                 url: 'set_sort.php',
-                            
                                 onSuccess: function(txt){ $('result').set('text', txt); },
-                                onFailure: function(){ $('result').set('text', 'The request failed.'); }
+                                onFailure: function(){ $('result').set('text', 'the request failed.'); }
                 });
 
                 $('sort_submit').addEvent('click', function(){
-//		      req.send('set_id=<?php echo $set_id; ?>&sort='+set_sort.serialize());
-		      alert('set_id=<?php echo $set_id; ?>&sort='+set_sort.serialize());
+		            req.send('set_id=<?php echo $set_id; ?>&' + set_sort.serialize(function(element, index){ return element.getProperty('id') + '=' + index; }).join('&'));
                 });
-                
+
             });
         </script>
     </head>
@@ -64,7 +73,7 @@ $set = mysql_fetch_array($result);
         <div id="container">
             <h1><a href="<?php echo $sappho_path; ?>/manage/"><?php echo $sappho_title; ?> management</a></h1>
             <h2>sets</h2>
-            <h3>sorting <i><?php echo $set["title"]; ?></i></h3>
+            <h3>sorting <i><?php echo $set_title; ?></i></h3>
             <div id="sort">
                 <ol id="set_sort">
 <?php
@@ -76,8 +85,9 @@ $sql = "SELECT image_id,        ".
        "       thumb_height     ".
        "FROM photo_image        ".
        "WHERE set_id='$set_id'  ".
-       "ORDER BY set_order      ";
+       "ORDER BY sort           ";
 if (!$result = mysql_query($sql)) print_error();
+
 while ($image = mysql_fetch_array($result)) {
 
     $x = $image["thumb_width"];
@@ -85,7 +95,7 @@ while ($image = mysql_fetch_array($result)) {
     $x_pad = ($x < $thumbnail_size) ? ($thumbnail_size-$x)/2 : 0;
     $y_pad = ($y < $thumbnail_size) ? ($thumbnail_size-$y)/2 : 0;
 
-    echo "                    <li><div class=\"set_sortable\">";
+    echo "                    <li id=\"sortable_{$image["image_id"]}\"><div class=\"set_sortable\">";
     echo "<img src=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/c/{$image["filename"]}.jpg\" alt=\"{$image["title"]}\" style=\"margin: {$y_pad}px {$x_pad}px;\"/>";
     echo "</div></li>\n";
 
@@ -93,12 +103,9 @@ while ($image = mysql_fetch_array($result)) {
 
 ?>
                 </ol>
-
-                <br /><a href="#" id="sort_submit">Update sorting order</a>
-                <div id="result"></div>
-
+                <div id="result">&nbsp;</div>
+                <div><a href="#" id="sort_submit">Update sorting order</a></div>
             </div>
         </div>
     </body>
 </html>
-

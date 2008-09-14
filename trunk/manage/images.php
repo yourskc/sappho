@@ -5,6 +5,8 @@
  *********************************/
 require_once "../global.php";
 
+
+
 if (!empty($_POST["edit"])) {
 
     $image_id = clean($_POST["edit"]);
@@ -19,6 +21,7 @@ if (!empty($_POST["edit"])) {
     header("Location: images.php");
 
 };
+
 
 
 if (!empty($_GET["edit"])) {
@@ -63,6 +66,8 @@ if (!empty($_GET["edit"])) {
     die();
 
 };
+
+
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">

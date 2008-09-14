@@ -6,6 +6,7 @@
 require_once "../global.php";
 
 
+
 if (!empty($_GET["delete"])) {
 
     $coll_id = clean($_GET["delete"]);
@@ -18,16 +19,19 @@ if (!empty($_GET["delete"])) {
 };
 
 
+
 if (!empty($_POST["edit"])) {
 
     $coll_id = clean($_POST["edit"]);
     $search_path = clean($_POST["search_path"]);
     $title   = clean($_POST["title"]);
     $body    = clean($_POST["body"]);
+    $sort    = clean($_POST["sort"]);
     $sql = "UPDATE photo_collection         ".
            "SET search_path='$search_path', ".
            "    title='$title',             ".
-           "    body='$body'                ".
+           "    body='$body',               ".
+           "    sort='$sort'                ";
            "WHERE collection_id='$coll_id'  ";
     if (!$result = mysql_query($sql)) print_error();
 
@@ -36,20 +40,24 @@ if (!empty($_POST["edit"])) {
 };
 
 
+
 if (isset($_POST["insert"])) {
 
     $search_path = clean($_POST["search_path"]);
     $title   = clean($_POST["title"]);
     $body    = clean($_POST["body"]);
+    $sort    = clean($_POST["sort"]);
     $sql = "INSERT INTO photo_collection    ".
            "SET search_path='$search_path', ".
            "    title='$title',             ".
-           "    body='$body'                ";
+           "    body='$body',               ".
+           "    sort='$sort'                ";
     if (!$result = mysql_query($sql)) print_error();
 
     header("Location: collections.php");
 
 };
+
 
 
 if (!empty($_GET["edit"])) {
@@ -58,7 +66,8 @@ if (!empty($_GET["edit"])) {
     $sql = "SELECT collection_id,           ".
            "       search_path,             ".
            "       title,                   ".
-           "       body                     ".
+           "       body,                    ".
+           "       sort                     ".
            "FROM photo_collection           ".
            "WHERE collection_id='$coll_id'  ";
     if (!$result = mysql_query($sql)) print_error();
@@ -81,9 +90,10 @@ if (!empty($_GET["edit"])) {
             <h3>editing <i><?php echo $col["title"]; ?></i></h3>
             <div id="edit">
                 <form action="collections.php" method="post">
-                    <input type="text" name="search_path" value="<?php echo $set["search_path"]; ?>" /><br />
+                    <input type="text" name="search_path" value="<?php echo $col["search_path"]; ?>" /><br />
                     <input type="text" name="title" value="<?php echo $col["title"]; ?>" /><br />
                     <textarea name="body" rows="8"><?php echo $col["body"]; ?></textarea><br />
+                    <input type="text" name="sort" value="<?php echo $col["sort"]; ?>" /><br />
                     <input type="hidden" name="edit" value="<?php echo $col["collection_id"]; ?>" />
                     <input type="submit" />
                 </form>
@@ -96,6 +106,7 @@ if (!empty($_GET["edit"])) {
     die();
 
 };
+
 
 
 if (isset($_GET["insert"])) {
@@ -117,9 +128,10 @@ if (isset($_GET["insert"])) {
             <h3>inserting a new row</h3>
             <div id="edit">
                 <form action="collections.php" method="post">
-                    <input type="text" name="search_path" /><br />
-                    <input type="text" name="title" /><br />
+                    <input type="text" name="search_path" value="search-path" /><br />
+                    <input type="text" name="title" value="title" /><br />
                     <textarea name="body" rows="8"></textarea><br />
+                    <input type="text" name="sort" value="0" /><br />
                     <input type="hidden" name="insert" />
                     <input type="submit" />
                 </form>
@@ -132,6 +144,7 @@ if (isset($_GET["insert"])) {
     die();
 
 };
+
 
 
 ?>
@@ -160,9 +173,12 @@ if (isset($_GET["insert"])) {
                     </tr>
 <?php
 
-$sql = "SELECT collection_id, search_path, title, body   ".
-       "FROM photo_collection               ".
-       "ORDER BY collection_id              ";
+$sql = "SELECT collection_id,   ".
+       "       search_path,     ".
+       "       title,           ".
+       "       body             ".
+       "FROM photo_collection   ".
+       "ORDER BY sort           ";
 if (!$result = mysql_query($sql)) print_error();
 while ($col = mysql_fetch_array($result)) {
     echo "                    <tr>\n";

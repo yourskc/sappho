@@ -53,10 +53,11 @@ if (!empty($_GET['id'])) {
                 <ul>
 <?php
 
-$sql = "SELECT photo_collection.collection_id,  ".
-       "       photo_collection.search_path,    ".
-       "       photo_collection.title           ".
-       "FROM photo_collection                   ";
+$sql = "SELECT collection_id,  ".
+       "       search_path,    ".
+       "       title           ".
+       "FROM photo_collection  ".
+       "ORDER BY sort          ";
 if (!$result = mysql_query($sql)) print_error();
 while ($coll = mysql_fetch_array($result)) {
 
@@ -73,15 +74,12 @@ while ($coll = mysql_fetch_array($result)) {
 echo "                </ul>\n";
 echo "            </div>\n";
 
-$sql = "SELECT photo_set.set_id,            ".
-       "       photo_set.search_path,       ".
-       "       photo_set.title,             ".
-       "       photo_set.body,              ".
-       "       COUNT(*) AS num_photos       ".
-       "FROM photo_set                      ".
-       "LEFT JOIN photo_image ON photo_image.set_id=photo_set.set_id ".
-       "WHERE photo_set.collection_id='{$coll_id}' ".
-       "GROUP BY photo_set.set_id           ";
+$sql = "SELECT search_path,             ".
+       "       title,                   ".
+       "       body                     ".
+       "FROM photo_set                  ".
+       "WHERE collection_id='$coll_id'  ".
+       "ORDER BY date_updated DESC      ";
 if (!$result_b = mysql_query($sql)) print_error();
 while ($set = mysql_fetch_array($result_b)) {
 

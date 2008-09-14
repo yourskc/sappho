@@ -23,10 +23,11 @@ require_once "global.php";
                 <ul>
 <?php
 
-$sql = "SELECT photo_collection.collection_id,  ".
-       "       photo_collection.search_path,    ".
-       "       photo_collection.title           ".
-       "FROM photo_collection                   ";
+$sql = "SELECT collection_id,  ".
+       "       search_path,    ".
+       "       title           ".
+       "FROM photo_collection  ".
+       "ORDER BY sort          ";
 if (!$result = mysql_query($sql)) print_error();
 while ($coll = mysql_fetch_array($result)) {
 

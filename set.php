@@ -57,10 +57,11 @@ if (!empty($_GET['id'])) {
                 <ul>
 <?php
 
-$sql = "SELECT photo_collection.collection_id,  ".
-       "       photo_collection.search_path,    ".
-       "       photo_collection.title           ".
-       "FROM photo_collection                   ";
+$sql = "SELECT collection_id,  ".
+       "       search_path,    ".
+       "       title           ".
+       "FROM photo_collection  ".
+       "ORDER BY sort          ";
 if (!$result = mysql_query($sql)) print_error();
 while ($coll = mysql_fetch_array($result)) {
 
@@ -80,7 +81,14 @@ while ($coll = mysql_fetch_array($result)) {
             <h2><?php echo $set_title; ?></h2>
 <?php
 
-$sql = "SELECT image_id, filename, title, thumb_width, thumb_height FROM photo_image WHERE set_id='$set_id'";
+$sql = "SELECT image_id,        ".
+       "       filename,        ".
+       "       title,           ".
+       "       thumb_width,     ".
+       "       thumb_height     ".
+       "       FROM photo_image ".
+       "WHERE set_id='$set_id'  ".
+       "ORDER BY sort           ";
 if (!$result = mysql_query($sql)) print_error();
 while ($image = mysql_fetch_array($result)) {
 

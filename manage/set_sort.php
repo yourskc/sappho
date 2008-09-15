@@ -63,8 +63,11 @@ list($set_title) = mysql_fetch_array($result);
                                 onFailure: function(){ $('result').set('text', 'the request failed.'); }
                 });
 
-                $('sort_submit').addEvent('click', function(){
-		            req.send('set_id=<?php echo $set_id; ?>&' + set_sort.serialize(function(element, index){ return element.getProperty('id') + '=' + index; }).join('&'));
+
+                $('sort_form').addEvent('submit', function(e) {
+                    e.stop();
+                    $('result').set('text', 'requesting...');
+                    req.send('set_id=<?php echo $set_id; ?>&' + set_sort.serialize(function(element, index){ return element.getProperty('id') + '=' + index; }).join('&'));
                 });
 
             });
@@ -105,7 +108,7 @@ while ($image = mysql_fetch_array($result)) {
 ?>
                 </ol>
                 <div id="result">&nbsp;</div>
-                <div><a href="#" id="sort_submit">Update sorting order</a></div>
+                <form id="sort_form"><input type="submit" id="sort_submit" /></form>
             </div>
         </div>
     </body>

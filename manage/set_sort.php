@@ -50,7 +50,8 @@ list($set_title) = mysql_fetch_array($result);
         <style type="text/css">
             @import "<?php echo $sappho_path; ?>/style.css";
         </style>
-        <script type="text/javascript" src="mootools.js"></script>
+        <script type="text/javascript" src="mootools-1.2-core-yc.js"></script>
+        <script type="text/javascript" src="mootools-1.2-more-yc.js"></script>
         <script type="text/javascript">
             window.addEvent('domready', function(){
     

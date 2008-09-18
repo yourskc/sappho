@@ -104,8 +104,17 @@ while ($image = mysql_fetch_array($result)) {
 
 };
 
+if (mysql_num_rows($result) === 0) {
+
+    echo "            <h4><i>this set contains no photos.</i></h4>\n";
+
+} else {
+
+    echo "            <div id=\"set_info\">$set_body</div>\n";
+
+};
+
 ?>
-            <div id="set_info"><?php echo $set_body; ?></div>
         </div>
     </body>
 </html>

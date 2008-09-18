@@ -88,6 +88,12 @@ while ($set = mysql_fetch_array($result_b)) {
 
 };
 
+if (mysql_num_rows($result_b) === 0) {
+
+    echo "            <h4><i>this collection contains no sets.</i></h4>\n";
+
+};
+
 ?>
         </div>
     </body>

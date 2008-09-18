@@ -18,11 +18,6 @@ require_once "../global.php";
     <body>
         <div id="container">
             <h1><?php echo $sappho_title; ?> management</h1>
-<?php
-if (isset($_GET["import_success"])) {
-    echo "            <h2 class=\"success\">the photos were successfully imported.</h2>\n";
-};
-?>
             <h2>things to do or be changed</h2>
             <ul>
                 <li><a href="collections.php">collections</a></li>

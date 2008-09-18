@@ -49,8 +49,14 @@ while ($coll = mysql_fetch_array($result_a)) {
 
     };
 
+    if (mysql_num_rows($result_b) === 0) {
+
+        echo "            <h4><i>this collection contains no sets.</i></h4>\n";
+
+    };
+
     if ($coll['sets'] > $num_sets_on_index) {
-        echo "            <p class=\"small\"><a href=\"collection/{$coll['search_path']}/\">view all {$coll['sets']}</a></p>\n";
+        echo "            <p class=\"small\"><a href=\"collection/{$coll['search_path']}/\">view all {$coll['sets']} sets in <i>{$coll[title]}</i></a></p>\n";
     };
 
 };

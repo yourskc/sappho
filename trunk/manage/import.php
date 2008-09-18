@@ -53,12 +53,21 @@ if (!empty($_POST)) {
         $thumb_width            = clean($exif["COMPUTED"]["Width"]);
         $thumb_height           = clean($exif["COMPUTED"]["Height"]);
 
+        $sql = "SELECT `sort`           ".
+               "FROM `photo_image`      ".
+               "WHERE `set_id`='$set'   ".
+               "ORDER BY `sort` DESC    ".
+               "LIMIT 1                 ";
+        if (!$result = mysql_query($sql)) print_error();
+        list($high_sort) = mysql_fetch_row($result);
+
         $sql = "INSERT INTO `photo_image`                               ".
                "SET `filename`              ='$filename',               ".
                "    `set_id`                ='$set',                    ".
                "    `title`                 ='$title',                  ".
                "    `caption`               ='$caption',                ".
                "    `date_imported`         = UNIX_TIMESTAMP(),         ".
+               "    `sort`                  = $high_sort + 1,           ".
                "    `exif_cameramodel`      ='$exif_cameramodel',       ".
                "    `exif_exposuretime`     ='$exif_exposuretime',      ".
                "    `exif_fnumber`          ='$exif_fnumber',           ".
@@ -78,7 +87,7 @@ if (!empty($_POST)) {
 
     };
 
-    header("Location: index.php?import_success");
+    header("Location: images.php");
 
 };
 

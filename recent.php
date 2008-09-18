@@ -49,7 +49,7 @@ $sql = "SELECT image_id,            ".
        "       thumb_height         ".
        "FROM photo_image            ".
        "ORDER BY date_imported DESC ".
-       "LIMIT 20                    ";
+       "LIMIT $num_recent_photos    ";
 if (!$result = mysql_query($sql)) print_error();
 while ($image = mysql_fetch_array($result)) {
 

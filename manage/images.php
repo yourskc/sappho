@@ -61,33 +61,50 @@ if (!empty($_POST["edit"])) {
            "WHERE image_id='$image_id'  ";
     if (!$result = mysql_query($sql)) print_error();
 
-    $sql = "SELECT date_imported        ".
-           "FROM photo_image            ".
-           "WHERE set_id='$old_set_id'  ".
-           "ORDER BY date_imported DESC ".
-           "LIMIT 1                     ";
-    if (!$result = mysql_query($sql)) print_error();
-    list($old_set_update) = mysql_fetch_row($result);
+    if ($set_id != $old_set_id) {
 
-    $sql = "UPDATE photo_set                    ".
-           "SET images=images-1,                ".
-           "    date_updated='$old_set_update'  ".
-           "WHERE set_id='$old_set_id'          ";
-    if (!$result = mysql_query($sql)) print_error();
+        $sql = "SELECT date_imported        ".
+               "FROM photo_image            ".
+               "WHERE set_id='$old_set_id'  ".
+               "ORDER BY date_imported DESC ".
+               "LIMIT 1                     ";
+        if (!$result = mysql_query($sql)) print_error();
+        list($old_set_update) = mysql_fetch_row($result);
 
-    $sql = "SELECT date_imported        ".
-           "FROM photo_image            ".
-           "WHERE set_id='$set_id'      ".
-           "ORDER BY date_imported DESC ".
-           "LIMIT 1                     ";
-    if (!$result = mysql_query($sql)) print_error();
-    list($set_update) = mysql_fetch_row($result);
+        $sql = "UPDATE photo_set                    ".
+               "SET images=images-1,                ".
+               "    date_updated='$old_set_update'  ".
+               "WHERE set_id='$old_set_id'          ";
+        if (!$result = mysql_query($sql)) print_error();
 
-    $sql = "UPDATE photo_set                ".
-           "SET images=images+1,            ".
-           "    date_updated='$set_update'  ".
-           "WHERE set_id='$set_id'          ";
-    if (!$result = mysql_query($sql)) print_error();
+        $sql = "SELECT date_imported        ".
+               "FROM photo_image            ".
+               "WHERE set_id='$set_id'      ".
+               "ORDER BY date_imported DESC ".
+               "LIMIT 1                     ";
+        if (!$result = mysql_query($sql)) print_error();
+        list($set_update) = mysql_fetch_row($result);
+
+        $sql = "UPDATE photo_set                ".
+               "SET images=images+1,            ".
+               "    date_updated='$set_update'  ".
+               "WHERE set_id='$set_id'          ";
+        if (!$result = mysql_query($sql)) print_error();
+
+        $sql = "SELECT sort             ".
+               "FROM photo_image        ".
+               "WHERE set_id='$set_id'  ".
+               "ORDER BY sort DESC      ".
+               "LIMIT 1                 ";
+        if (!$result = mysql_query($sql)) print_error();
+        list($high_sort) = mysql_fetch_row($result);
+
+        $sql = "UPDATE photo_image          ".
+               "SET sort=$high_sort+1       ".
+               "WHERE image_id='$image_id'  ";
+        if (!$result = mysql_query($sql)) print_error();
+
+    };
 
     header("Location: images.php");
 

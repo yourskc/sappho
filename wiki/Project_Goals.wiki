@@ -1,5 +1,5 @@
 #summary Goals towards which project sappho aims.
-#labels Featured
+#labels Phase-Requirements,Featured
 
 = Primary =
 

@@ -56,7 +56,7 @@ echo "                ".($image["exif_flash"]?"flash fired":"no flash")."<br />\
 echo "                {$image["exif_datetimeoriginal"]}\n";
 echo "            </div>\n";
 
-echo "            <div id=\"caption\">".nl2br($image["caption"])."</div>\n";
+echo "            <div id=\"caption\">".nl2br($image["caption"])."<br /><br /></div>\n";
 
 
 $sql = "SELECT image_id                     ".

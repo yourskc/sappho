@@ -30,22 +30,22 @@ img {
 }
 
 h1 {
-    margin: 0 0 0 0;
+    margin: 0 0.8em 0 0;
     font-size: 1.4em;
 }
 
 h2 {
-    margin: 1em 0 0 0;
+    margin: 0.6em 0;
     font-size: 1.2em;
 }
 
 h3 {
-    margin: 0.4em 0 0 0;
+    margin: 0.4em 0;
     font-size: 1em;
 }
 
 h4 {
-    margin: 0 0 0 0;
+    margin: 0.2em 0;
     font-size: 1em;
     font-weight: normal;
 }
@@ -123,7 +123,7 @@ div.set_thumbnail {
 
 #exif {
     float: right;
-    width: 14em;
+    width: 16em;
     margin-left: 20px;
     padding-left: 20px;
     border-left: 1px gray dashed;
@@ -136,7 +136,7 @@ div.set_thumbnail {
 }
 
 #caption {
-    margin-bottom: 40px;
+    font-size: 0.8em;
 }
 
 #link_next {
@@ -153,12 +153,13 @@ div.set_thumbnail {
 /* MANAGEMENT BACK-END STYLES */
 
 #insert {
-    margin: 1em 0;
+    margin: 0.2em 0;
 }
 
 #list table {
     border-collapse: collapse;
     line-height: 1em;
+    margin: 1em 0;
 }
 
 #list table th {
@@ -183,7 +184,7 @@ div.set_thumbnail {
 #import table {
     border-collapse: collapse;
     line-height: 1em;
-    margin-top: 2em;
+    margin: 1em 0;
 }
 
 #import table th {
@@ -214,8 +215,27 @@ div.set_thumbnail {
     width: 20em;
 }
 
-div.set_sortable {
+ol#set_sort {
+    list-style: none;
+    overflow: auto;
+}
+
+#set_sort li {
+    float: left;
     margin: 20px 20px 0 0;
+    height: 120px;
+    width: 120px;
+    border: 1px solid #ccc;
+}
+
+#result {
+    clear: both;
+    margin: 20px 0;
+}
+
+#edit_image_thumbnail {
+    float: right;
+    margin: 0 0;
     height: 120px;
     width: 120px;
     border: 1px solid #ccc;

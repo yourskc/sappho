@@ -35,7 +35,7 @@ if (!empty($_GET["delete"])) {
            "WHERE set_id='$old_set_id'          ";
     if (!$result = mysql_query($sql)) print_error();
 
-    header("Location: sets.php");
+    header("Location: images.php");
 
 };
 

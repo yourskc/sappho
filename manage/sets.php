@@ -99,8 +99,7 @@ if (!empty($_GET["edit"])) {
     <body>
         <div id="container">
             <h1><a href="<?php echo $sappho_path; ?>/manage/"><?php echo $sappho_title; ?> management</a></h1>
-            <h2>sets</h2>
-            <h3>editing <i><?php echo $set["title"]; ?></i></h3>
+            <h2><a href="sets.php">sets</a> &raquo; editing <i><?php echo $set["title"]; ?></i></h2>
             <div id="edit">
                 <form action="sets.php" method="post">
                     <input type="text" name="search_path" value="<?php echo $set["search_path"]; ?>" /><br />
@@ -148,8 +147,7 @@ if (isset($_GET["insert"])) {
     <body>
         <div id="container">
             <h1><a href="<?php echo $sappho_path; ?>/manage/"><?php echo $sappho_title; ?> management</a></h1>
-            <h2>sets</h2>
-            <h3>inserting a new row</h3>
+            <h2><a href="sets.php">sets</a> &raquo; inserting a new row</h2>
             <div id="edit">
                 <form action="sets.php" method="post">
                     <input type="text" name="search_path" value="search-path" /><br />

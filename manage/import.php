@@ -135,7 +135,7 @@ if (count($freshies) === 0) {
 ?>
                         <tr>
                             <th colspan="2">
-                                <input type="submit" value="import" />
+                                <input type="submit" />
                             </th>
                         </tr>
                     </table>

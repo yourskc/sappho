@@ -99,9 +99,9 @@ while ($image = mysql_fetch_array($result)) {
     $x_pad = ($x < $thumbnail_size) ? ($thumbnail_size-$x)/2 : 0;
     $y_pad = ($y < $thumbnail_size) ? ($thumbnail_size-$y)/2 : 0;
 
-    echo "                    <li id=\"sortable_{$image["image_id"]}\"><div class=\"set_sortable\">";
+    echo "                    <li id=\"sortable_{$image["image_id"]}\">";
     echo "<img src=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/c/{$image["filename"]}.jpg\" alt=\"{$image["title"]}\" style=\"margin: {$y_pad}px {$x_pad}px;\"/>";
-    echo "</div></li>\n";
+    echo "</li>\n";
 
 };
 

@@ -3,7 +3,7 @@
 
 = Getting your photos into S3 =
 
-You must resize and upload your photos manually, at present. Tools such as [http://www.irfanview.com/ IrfanView] and [https://jets3t.dev.java.net/ Jets3t] make batch conversions and uploads very easy and quick.
+You must resize and upload your photos manually, at present. Tools such as [http://www.irfanview.com/ IrfanView] and [https://jets3t.dev.java.net/ Jets3t] make batch conversions and uploads very easy and quick for Windows users.
 
 You'll need to choose a bucket and a path. If you'd like to store your photos in the location `http://BIG-BUCKET.s3.amazonaws.com/things/my_pictures/`, you must create a bucket named `BIG-BUCKET`.
 
@@ -20,4 +20,4 @@ Once you get the three sizes uploaded for a given file name, the photo should ap
 
 Perhaps you'd like to code some shell scripts that automatically resize and upload your photos! That would be great!
 
-Such scripts may become a part of this project's code base, when we have time to code them.
+When we have more time to code, such scripts may become a part of this project's code base.

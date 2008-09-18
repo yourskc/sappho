@@ -1,4 +1,4 @@
-#summary Goals toward which project sappho aims.
+#summary Goals towards which project sappho aims.
 #labels Featured
 
 = Primary =
@@ -10,4 +10,5 @@
 = Secondary =
 
   * Offer an intuitive and efficient interface.
-  * Offer a simple design that brings attention to the photos. 
+  * Offer a simple design that brings attention to the photos.
+  * Minimize load on the page-generating server.

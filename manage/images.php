@@ -10,12 +10,49 @@ require_once "../global.php";
 if (!empty($_POST["edit"])) {
 
     $image_id = clean($_POST["edit"]);
+    $set_id   = clean($_POST["set_id"]);
     $title    = clean($_POST["title"]);
     $caption  = clean($_POST["caption"]);
+
+    $sql = "SELECT set_id               ".
+           "FROM photo_image            ".
+           "WHERE image_id='$image_id'  ";
+    if (!$result = mysql_query($sql)) print_error();
+    list($old_set_id) = mysql_fetch_row($result);
+
     $sql = "UPDATE photo_image          ".
-           "SET title='$title',         ".
+           "SET set_id='$set_id',       ".
+           "    title='$title',         ".
            "    caption='$caption'      ".
            "WHERE image_id='$image_id'  ";
+    if (!$result = mysql_query($sql)) print_error();
+
+    $sql = "SELECT date_imported        ".
+           "FROM photo_image            ".
+           "WHERE set_id='$old_set_id'  ".
+           "ORDER BY date_imported DESC ".
+           "LIMIT 1                     ";
+    if (!$result = mysql_query($sql)) print_error();
+    list($old_set_update) = mysql_fetch_row($result);
+
+    $sql = "UPDATE photo_set                    ".
+           "SET images=images-1,                ".
+           "    date_updated='$old_set_update'  ".
+           "WHERE set_id='$old_set_id'          ";
+    if (!$result = mysql_query($sql)) print_error();
+
+    $sql = "SELECT date_imported        ".
+           "FROM photo_image            ".
+           "WHERE set_id='$set_id'      ".
+           "ORDER BY date_imported DESC ".
+           "LIMIT 1                     ";
+    if (!$result = mysql_query($sql)) print_error();
+    list($set_update) = mysql_fetch_row($result);
+
+    $sql = "UPDATE photo_set                ".
+           "SET images=images+1,            ".
+           "    date_updated='$set_update'  ".
+           "WHERE set_id='$set_id'          ";
     if (!$result = mysql_query($sql)) print_error();
 
     header("Location: images.php");
@@ -28,6 +65,7 @@ if (!empty($_GET["edit"])) {
 
     $image_id = clean($_GET["edit"]);
     $sql = "SELECT image_id,            ".
+           "       set_id,              ".
            "       filename,            ".
            "       title,               ".
            "       caption,             ".
@@ -68,6 +106,18 @@ if (!empty($_GET["edit"])) {
                 <form action="images.php" method="post">
                     <input type="text" name="title" value="<?php echo $image["title"]; ?>" /><br />
                     <textarea name="caption" rows="8"><?php echo $image["caption"]; ?></textarea><br />
+                    <select name="set_id">
+                        <option value="0">---- choose a set ----</option>
+<?php
+    $sql = "SELECT set_id, title FROM photo_set ORDER BY title ASC";
+    if (!$result = mysql_query($sql)) print_error();
+    while (list($set_id, $set_title) = mysql_fetch_row($result)) {
+        if ($set_id == $image["set_id"]) { $sel = " selected"; }
+        else { unset($sel); };
+        echo "                        <option value=\"$set_id\"$sel>$set_title</option>\n";
+    };
+?>
+                    </select><br />
                     <input type="hidden" name="edit" value="<?php echo $image["image_id"]; ?>" />
                     <input type="submit" />
                 </form>

@@ -123,7 +123,7 @@ if (!empty($_GET["edit"])) {
                     <input type="text" name="title" value="<?php echo $set["title"]; ?>" /><br />
                     <textarea name="body" rows="8"><?php echo $set["body"]; ?></textarea><br />
                     <select name="coll_id">
-                        <option value="">---- choose a collection ----</option>
+                        <option value="0">---- choose a collection ----</option>
 <?php
     $sql = "SELECT collection_id, title FROM photo_collection ORDER BY title ASC";
     if (!$result = mysql_query($sql)) print_error();

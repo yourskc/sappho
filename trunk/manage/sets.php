@@ -35,12 +35,29 @@ if (!empty($_POST["edit"])) {
     $search_path = clean($_POST["search_path"]);
     $title       = clean($_POST["title"]);
     $body        = clean($_POST["body"]);
+
+    $sql = "SELECT collection_id    ".
+           "FROM photo_set          ".
+           "WHERE set_id='$set_id'  ";
+    if (!$result = mysql_query($sql)) print_error();
+    list($old_coll_id) = mysql_fetch_row($result);
+
     $sql = "UPDATE photo_set                ".
            "SET collection_id='$coll_id',   ".
            "    search_path='$search_path', ".
            "    title='$title',             ".
            "    body='$body'                ".
            "WHERE set_id='$set_id'          ";
+    if (!$result = mysql_query($sql)) print_error();
+
+    $sql = "UPDATE photo_collection             ".
+           "SET sets=sets-1                     ".
+           "WHERE collection_id='$old_coll_id'  ";
+    if (!$result = mysql_query($sql)) print_error();
+
+    $sql = "UPDATE photo_collection         ".
+           "SET sets=sets+1                 ".
+           "WHERE collection_id='$coll_id'  ";
     if (!$result = mysql_query($sql)) print_error();
 
     header("Location: sets.php");

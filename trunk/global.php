@@ -36,6 +36,7 @@ $sappho_path = "http://www.domain.com/path/to/sappho";   // no trailing slash
 $sappho_title = "photo album";
 $num_sets_on_index = 3;
 $thumbnail_size = 120;
+$num_recent_photos = 12;
 date_default_timezone_set('America/Denver');
 $date_format    = 'F jS\, Y, g\:i a';
 $entry_find     = array('--', '...', '  ');

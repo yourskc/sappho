@@ -31,7 +31,7 @@ $sql = "SELECT collection_id,   ".
 if (!$result_a = mysql_query($sql)) print_error();
 while ($coll = mysql_fetch_array($result_a)) {
 
-    echo "            <h2>{$coll[title]}</h2>\n";
+    echo "            <h2>".output($coll['title'])."</h2>\n";
 
     $sql = "SELECT set_id,                                  ".
            "       search_path,                             ".
@@ -44,8 +44,8 @@ while ($coll = mysql_fetch_array($result_a)) {
     if (!$result_b = mysql_query($sql)) print_error();
     while ($set = mysql_fetch_array($result_b)) {
 
-        echo "            <h3><a href=\"set/{$set['search_path']}/\">{$set['title']}</a></h3>\n";
-        echo "            <h4>{$set['body']}</h4>\n";
+        echo "            <h3><a href=\"set/{$set['search_path']}/\">".output($set['title'])."</a></h3>\n";
+        echo "            <h4>".output($set['body'])."</h4>\n";
 
     };
 
@@ -56,7 +56,7 @@ while ($coll = mysql_fetch_array($result_a)) {
     };
 
     if ($coll['sets'] > $num_sets_on_index) {
-        echo "            <p class=\"small\"><a href=\"collection/{$coll['search_path']}/\">view all {$coll['sets']} sets in <i>{$coll[title]}</i></a></p>\n";
+        echo "            <p class=\"small\"><a href=\"collection/{$coll['search_path']}/\">view all {$coll['sets']} sets in <i>".output($coll['title'])."</i></a></p>\n";
     };
 
 };

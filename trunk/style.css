@@ -132,12 +132,10 @@ div.set_thumbnail {
 
 #exif #title {
     font-weight: bold;
-    padding-bottom: 0.2em;
 }
 
 #caption {
     font-size: 0.8em;
-    padding-bottom: 0.2em;
 }
 
 #link_next {

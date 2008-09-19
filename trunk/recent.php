@@ -32,7 +32,7 @@ if (!$result = mysql_query($sql)) print_error();
 while ($coll = mysql_fetch_array($result)) {
 
     echo "                    ";
-    echo "<li><a href=\"$sappho_path/collection/{$coll['search_path']}/\">{$coll['title']}</a></li>\n";
+    echo "<li><a href=\"$sappho_path/collection/{$coll['search_path']}/\">".output($coll['title'])."</a></li>\n";
 
 };
 
@@ -58,9 +58,9 @@ while ($image = mysql_fetch_array($result)) {
     $x_pad = ($x < $thumbnail_size) ? ($thumbnail_size-$x)/2 : 0;
     $y_pad = ($y < $thumbnail_size) ? ($thumbnail_size-$y)/2 : 0;
 
-    echo "            <div class=\"set_thumbnail\" title=\"{$image["title"]}\">";
+    echo "            <div class=\"set_thumbnail\" title=\"".output($image["title"])."\">";
     echo "<a href=\"$sappho_path/photo/{$image["image_id"]}/\">";
-    echo "<img src=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/c/{$image["filename"]}.jpg\" alt=\"{$image["title"]}\" style=\"margin: {$y_pad}px {$x_pad}px;\"/>";
+    echo "<img src=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/c/{$image["filename"]}.jpg\" alt=\"".output($image["title"])."\" style=\"margin: {$y_pad}px {$x_pad}px;\"/>";
     echo "</a></div>\n";
 
 };

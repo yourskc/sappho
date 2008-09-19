@@ -44,7 +44,7 @@ if (!empty($_GET['id'])) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head>
-        <title><?php echo $sappho_title." &mdash; ".$set_title; ?></title>
+        <title><?php echo $sappho_title." &mdash; ".output($set_title); ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <style type="text/css">
             @import "<?php echo $sappho_path; ?>/style.css";
@@ -68,9 +68,9 @@ while ($coll = mysql_fetch_array($result)) {
     echo "                    ";
 
     if ($coll['collection_id'] == $coll_id) {
-        echo "<li class=\"bolded\"><a href=\"$sappho_path/collection/{$coll['search_path']}/\">{$coll['title']}</a></li>\n";
+        echo "<li class=\"bolded\"><a href=\"$sappho_path/collection/{$coll['search_path']}/\">".output($coll['title'])."</a></li>\n";
     } else {
-        echo "<li><a href=\"$sappho_path/collection/{$coll['search_path']}/\">{$coll['title']}</a></li>\n";
+        echo "<li><a href=\"$sappho_path/collection/{$coll['search_path']}/\">".output($coll['title'])."</a></li>\n";
     };
 
 };
@@ -78,7 +78,7 @@ while ($coll = mysql_fetch_array($result)) {
 ?>
                 </ul>
             </div>
-            <h2><?php echo $set_title; ?></h2>
+            <h2><?php echo output($set_title); ?></h2>
 <?php
 
 $sql = "SELECT image_id,        ".
@@ -97,9 +97,9 @@ while ($image = mysql_fetch_array($result)) {
     $x_pad = ($x < $thumbnail_size) ? ($thumbnail_size-$x)/2 : 0;
     $y_pad = ($y < $thumbnail_size) ? ($thumbnail_size-$y)/2 : 0;
 
-    echo "            <div class=\"set_thumbnail\" title=\"{$image["title"]}\">";
+    echo "            <div class=\"set_thumbnail\" title=\"".output($image["title"])."\">";
     echo "<a href=\"$sappho_path/photo/{$image["image_id"]}/\">";
-    echo "<img src=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/c/{$image["filename"]}.jpg\" alt=\"{$image["title"]}\" style=\"margin: {$y_pad}px {$x_pad}px;\"/>";
+    echo "<img src=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/c/{$image["filename"]}.jpg\" alt=\"".output($image["title"])."\" style=\"margin: {$y_pad}px {$x_pad}px;\"/>";
     echo "</a></div>\n";
 
 };
@@ -110,7 +110,7 @@ if (mysql_num_rows($result) === 0) {
 
 } else {
 
-    echo "            <div id=\"set_info\">$set_body</div>\n";
+    echo "            <div id=\"set_info\">".output($set_body)."</div>\n";
 
 };
 

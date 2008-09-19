@@ -40,7 +40,7 @@ if (!empty($_GET['id'])) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
     <head>
-        <title><?php echo $sappho_title." &mdash; ".$coll_title; ?></title>
+        <title><?php echo $sappho_title." &mdash; ".output($coll_title); ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <style type="text/css">
             @import "<?php echo $sappho_path; ?>/style.css";
@@ -66,7 +66,7 @@ while ($coll = mysql_fetch_array($result)) {
     if ($coll['collection_id'] == $coll_id) {
         echo "<li class=\"bordered\">{$coll['title']}</li>\n";
     } else {
-        echo "<li><a href=\"$sappho_path/collection/{$coll['search_path']}/\">{$coll['title']}</a></li>\n";
+        echo "<li><a href=\"$sappho_path/collection/{$coll['search_path']}/\">".output($coll['title'])."</a></li>\n";
     };
 
 };
@@ -83,8 +83,8 @@ $sql = "SELECT search_path,             ".
 if (!$result_b = mysql_query($sql)) print_error();
 while ($set = mysql_fetch_array($result_b)) {
 
-    echo "            <h3><a href=\"$sappho_path/set/{$set['search_path']}/\">{$set['title']}</a></h3>\n";
-    echo "            <h4>{$set['body']}</h4>\n";
+    echo "            <h3><a href=\"$sappho_path/set/{$set['search_path']}/\">".output($set['title'])."</a></h3>\n";
+    echo "            <h4>".output($set['body'])."</h4>\n";
 
 };
 

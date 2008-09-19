@@ -97,7 +97,7 @@ while ($image = mysql_fetch_array($result)) {
     $x_pad = ($x < $thumbnail_size) ? ($thumbnail_size-$x)/2 : 0;
     $y_pad = ($y < $thumbnail_size) ? ($thumbnail_size-$y)/2 : 0;
 
-    echo "            <div class=\"set_thumbnail\">";
+    echo "            <div class=\"set_thumbnail\" title=\"{$image["title"]}\">";
     echo "<a href=\"$sappho_path/photo/{$image["image_id"]}/\">";
     echo "<img src=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/c/{$image["filename"]}.jpg\" alt=\"{$image["title"]}\" style=\"margin: {$y_pad}px {$x_pad}px;\"/>";
     echo "</a></div>\n";

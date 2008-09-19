@@ -211,11 +211,13 @@ if (!empty($_GET["edit"])) {
                     </tr>
 <?php
 
-$sql = "SELECT photo_image.image_id,                    ".
-       "       photo_image.set_id,                      ".
-       "       photo_image.filename,                    ".
-       "       photo_image.title                        ".
-       "FROM photo_image                                ";
+$sql = "SELECT photo_image.image_id,    ".
+       "       photo_image.set_id,      ".
+       "       photo_image.filename,    ".
+       "       photo_image.title        ".
+       "FROM photo_image                ".
+       "ORDER BY date_imported DESC,    ".
+       "         image_id DESC          ";
 if (!$result = mysql_query($sql)) print_error();
 while ($image = mysql_fetch_array($result)) {
     echo "                    <tr>\n";

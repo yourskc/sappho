@@ -33,7 +33,7 @@ while ($image = mysql_fetch_array($result)) {
 ?>
         <item>
             <title><?php echo output($image["title"]); ?></title>
-            <link><?php echo $sappho_path."/photo/".$image["image_id"]; ?>/</link>
+            <link><?php echo $sappho_path."/image/".$image["image_id"]; ?>/</link>
             <description><?php echo(htmlentities("<img src=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/c/{$image["filename"]}.jpg\" alt=\"{$image["title"]}\" width=\"{$image["thumb_width"]}\" height=\"{$image["thumb_height"]}\" />")); ?> <?php echo output($image["caption"]); ?></description>
         </item>
 <?php

@@ -7,6 +7,6 @@ RewriteRule ^collection/([0-9]*)/?$         collection.php?id=$1
 RewriteRule ^collection/([a-z0-9\-_]*)/?$   collection.php?search_path=$1
 RewriteRule ^set/([0-9]*)/?$                set.php?id=$1
 RewriteRule ^set/([a-z0-9\-_]*)/?$          set.php?search_path=$1
-RewriteRule ^photo/([0-9]*)/?$              photo.php?id=$1
+RewriteRule ^image/([0-9]*)/?$              image.php?id=$1
 RewriteRule ^recent/?$                      recent.php
 RewriteRule ^rss/?$                         rss.php

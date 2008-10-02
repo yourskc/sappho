@@ -70,7 +70,7 @@ if (!$result = mysql_query($sql)) print_error();
 if (mysql_num_rows($result) === 1) {
     
     $next_img = mysql_fetch_array($result);
-    echo "            <div id=\"link_next\"><a href=\"$sappho_path/photo/{$next_img["image_id"]}/\">view next in set</a></div>\n";
+    echo "            <div id=\"link_next\"><a href=\"$sappho_path/image/{$next_img["image_id"]}/\">view next in set</a></div>\n";
 
 };
 

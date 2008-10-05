@@ -45,7 +45,7 @@ $image = mysql_fetch_array($result);
 
 echo "            <img src=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/b/{$image["filename"]}.jpg\" alt=\"".output($image["title"])."\" id=\"photo\" />\n";
 
-echo "            <div id=\"exif\">\n";
+echo "            <div id=\"photo_info\">\n";
 echo "                <div id=\"title\">photo information</div>\n";
 echo "                ".output($image["exif_cameramodel"])."<br />\n";
 echo "                shutter: ".output($image["exif_exposuretime"])." s<br />\n";
@@ -53,10 +53,15 @@ echo "                <i>f</i>: ".output($image["exif_fnumber"])."<br />\n";
 echo "                iso: ".output($image["exif_isospeedratings"])."<br />\n";
 echo "                focal: ".output($image["exif_focallength"])." mm<br />\n";
 echo "                ".($image["exif_flash"]?"flash fired":"no flash")."<br />\n";
-echo "                ".output($image["exif_datetimeoriginal"])."\n";
+echo "                ".output($image["exif_datetimeoriginal"])."<br />\n";
+echo "                <a href=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/a/{$image["filename"]}.jpg\">high resolution version</a>\n";
 echo "            </div>\n";
 
-echo "            <div id=\"caption\">".output($image["caption"])."<br /><br /></div>\n";
+if (!empty($image["caption"])) {
+
+    echo "            <div id=\"caption\">".output($image["caption"])."<br /><br /></div>\n";
+
+};
 
 
 $sql = "SELECT image_id                     ".
@@ -74,7 +79,17 @@ if (mysql_num_rows($result) === 1) {
 
 };
 
-echo "            <div id=\"link_full\"><a href=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/a/{$image["filename"]}.jpg\">view in high resolution</a></div>\n";
+$sql = "SELECT search_path                  ".
+       "FROM photo_set                      ".
+       "WHERE set_id='{$image["set_id"]}'   ";
+if (!$result = mysql_query($sql)) print_error();
+
+if (mysql_num_rows($result) === 1) {
+
+    $set = mysql_fetch_array($result);
+    echo "            <div id=\"link_set\"><a href=\"$sappho_path/set/{$set["search_path"]}/\">return to set</a></div>\n";
+
+};
 
 ?>
         </div>

@@ -17,7 +17,7 @@ require_once "../global.php";
     </head>
     <body>
         <div id="container">
-            <h1><?php echo $sappho_title; ?> management</h1>
+            <h1><a href="<?php echo $sappho_path; ?>"><?php echo $sappho_title; ?></a> &raquo; manage</h1>
             <h2>things to do or be changed</h2>
             <ul>
                 <li><a href="collections.php">collections</a></li>

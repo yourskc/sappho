@@ -139,7 +139,7 @@ if (!empty($_GET["edit"])) {
     </head>
     <body>
         <div id="container">
-            <h1><a href="<?php echo $sappho_path; ?>/manage/"><?php echo $sappho_title; ?> management</a></h1>
+            <h1><a href="<?php echo $sappho_path; ?>"><?php echo $sappho_title; ?></a> &raquo; <a href="<?php echo $sappho_path; ?>/manage/">manage</a></h1>
             <h2><a href="images.php">images</a> &raquo; editing <i><?php echo $image["title"]; ?></i></h2>
             <div id="edit_image_thumbnail">
 <?php
@@ -196,7 +196,7 @@ if (!empty($_GET["edit"])) {
     </head>
     <body>
         <div id="container">
-            <h1><a href="<?php echo $sappho_path; ?>/manage/"><?php echo $sappho_title; ?> management</a></h1>
+            <h1><a href="<?php echo $sappho_path; ?>"><?php echo $sappho_title; ?></a> &raquo; <a href="<?php echo $sappho_path; ?>/manage/">manage</a></h1>
             <h2>images</h2>
             <div id="insert"><a href="import.php">import images</a></div>
             <div id="list">

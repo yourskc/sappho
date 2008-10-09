@@ -105,7 +105,7 @@ header('Content-Type: text/html; charset=iso-8859-1');
     </head>
     <body>
         <div id="container">
-            <h1><a href="<?php echo $sappho_path; ?>"><?php echo $sappho_title; ?></a> &raquo; <a href="<?php echo $sappho_path; ?>/manage/">manage</a></h1>
+            <h1><a href="<?php echo $sappho_path; ?>/"><?php echo $sappho_title; ?></a> &raquo; <a href="<?php echo $sappho_path; ?>/manage/">manage</a></h1>
             <h2>import images from aws s3</h2>
 <?php
 

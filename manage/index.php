@@ -19,7 +19,7 @@ header('Content-Type: text/html; charset=iso-8859-1');
     </head>
     <body>
         <div id="container">
-            <h1><a href="<?php echo $sappho_path; ?>"><?php echo $sappho_title; ?></a> &raquo; manage</h1>
+            <h1><a href="<?php echo $sappho_path; ?>/"><?php echo $sappho_title; ?></a> &raquo; manage</h1>
             <h2>things to do or be changed</h2>
             <ul>
                 <li><a href="collections.php">collections</a></li>

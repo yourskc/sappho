@@ -7,12 +7,6 @@ require_once "global.php";
 
 header('Content-Type: text/html; charset=iso-8859-1');
 
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
-    <head>
-<?php
-
 $image_id = clean($_GET['id']);
 
 $sql = "SELECT filename,                    ".
@@ -30,9 +24,19 @@ $sql = "SELECT filename,                    ".
        "FROM photo_image                    ".
        "WHERE image_id='$image_id'          ";
 if (!$result = mysql_query($sql)) print_error();
+
+if (mysql_num_rows($result) !== 1) {
+
+    die("could not find the specified image.");
+
+};
+
 $image = mysql_fetch_array($result);
 
 ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
         <title><?php echo $sappho_title." &mdash; ".output($image["title"]); ?></title>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
         <style type="text/css">

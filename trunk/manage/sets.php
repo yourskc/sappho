@@ -173,7 +173,7 @@ if (isset($_GET["insert"])) {
                 <form action="sets.php" method="post">
                     <input type="text" name="search_path" value="search-path" /><br />
                     <input type="text" name="title" value="title" /><br />
-                    <textarea name="body" rows="8"></textarea><br />
+                    <textarea name="body" rows="8">description</textarea><br />
                     <select name="coll_id">
                         <option value="">---- choose a collection ----</option>
 <?php

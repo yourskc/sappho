@@ -132,7 +132,7 @@ if (isset($_GET["insert"])) {
                 <form action="collections.php" method="post">
                     <input type="text" name="search_path" value="search-path" /><br />
                     <input type="text" name="title" value="title" /><br />
-                    <textarea name="body" rows="8"></textarea><br />
+                    <textarea name="body" rows="8">description</textarea><br />
                     <input type="text" name="sort" value="0" /><br />
                     <input type="hidden" name="insert" />
                     <input type="submit" />

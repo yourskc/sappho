@@ -3,16 +3,26 @@
 
 = Getting your photos into S3 =
 
-You must resize and upload your photos manually, at present. Tools such as [http://www.irfanview.com/ IrfanView] and [https://jets3t.dev.java.net/ Jets3t] make batch conversions and uploads very easy and quick for Windows users.
+You must resize and upload your photos manually, at present. Tools such as [http://www.irfanview.com/ IrfanView] and [https://jets3t.dev.java.net/ Jets3t] make batch conversions and uploads very quick and easy for Windows users.
 
-You'll need to choose a bucket and a path. If you'd like to store your photos in the location `http://BIG-BUCKET.s3.amazonaws.com/things/my_pictures/`, you must create a bucket named `BIG-BUCKET`.
+You'll need to choose a bucket and a path. If you'd like to store your photos in the location `http://BIG-BUCKET.s3.amazonaws.com/things/my_pictures/`, you must create a bucket named `BIG-BUCKET`. Your path would then be `things/my_pictures`.
 
-sappho uses a very specific directory structure. Within your chosen path, you'll have three folders: `a`, `b`, and `c`.
+_sappho_ uses a very specific directory structure. Within your chosen path, you'll have three folders: `a`, `b`, and `c`.
   * `a` contains full resolution images.
   * `b` contains images with a long side of 640px.
   * `c` contains images with a long side of 120px.
 
-If you're uploading one image named `larz.jpg`, you'll need it in three sizes, all with the same filename, in each of the folders `a`, `b`, and `c`.
+If you're uploading one image named `000001.jpg`, you'll need it in three sizes, all with the same filename, in each of the folders `a`, `b`, and `c`.
+
+_sappho_ requires a numerical filename with the extension `.jpg`. These are examples of valid image filenames:
+  * `0.jpg`
+  * `000001.jpg`
+  * `98765432109876543210.jpg`
+These are examples of _invalid_ image filenames:
+  * `000001.JPG`
+  * `001jlr.jpg`
+  * `000001.jpeg`
+  * `000001.png`
 
 Once you get the three sizes uploaded for a given file name, the photo should appear when you visit `/manage/import.php`.
 

@@ -5,7 +5,7 @@
 
   * Store all images in S3.
   * Serve all images directly from S3.
-  * Only serve valid XHTML 1.1.
+  * Only serve valid XHTML 1.1 and CSS 2.1.
 
 = Secondary =
 

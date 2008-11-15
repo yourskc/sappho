@@ -101,7 +101,7 @@ while ($image = mysql_fetch_array($result)) {
 
     echo "            <div class=\"set_thumbnail\" title=\"".output($image["title"])."\">";
     echo "<a href=\"$sappho_path/image/{$image["image_id"]}/\">";
-    echo "<img src=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/c/{$image["filename"]}.jpg\" alt=\"".output($image["title"])."\" style=\"margin: {$y_pad}px {$x_pad}px;\"/>";
+    echo "<img src=\"http://$s3_host/$s3_path/c/{$image["filename"]}.jpg\" alt=\"".output($image["title"])."\" style=\"margin: {$y_pad}px {$x_pad}px;\"/>";
     echo "</a></div>\n";
 
 };

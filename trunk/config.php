@@ -25,5 +25,6 @@ $entry_find     = array('--', '...', '  ');
 $entry_replace  = array('&mdash;', '&hellip;', ' &nbsp; ');
 $s3_bucket = 'some-bucket';                             // must be dns valid
 $s3_path = 'path/to/s3/images';                         // no trailing slash
+$s3_host = $s3_bucket.'.s3.amazonaws.com';
 
 ?>

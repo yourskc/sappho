@@ -49,7 +49,7 @@ $image = mysql_fetch_array($result);
             <h2><?php echo output($image["title"]); ?></h2>
 <?php
 
-echo "            <img src=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/b/{$image["filename"]}.jpg\" alt=\"".output($image["title"])."\" id=\"photo\" />\n";
+echo "            <img src=\"http://$s3_host/$s3_path/b/{$image["filename"]}.jpg\" alt=\"".output($image["title"])."\" id=\"photo\" />\n";
 
 echo "            <div id=\"photo_info\">\n";
 echo "                <div id=\"title\">photo information</div>\n";
@@ -60,7 +60,7 @@ echo "                iso: ".output($image["exif_isospeedratings"])."<br />\n";
 echo "                focal: ".output($image["exif_focallength"])." mm<br />\n";
 echo "                ".($image["exif_flash"]?"flash fired":"no flash")."<br />\n";
 echo "                ".output($image["exif_datetimeoriginal"])."<br />\n";
-echo "                <a href=\"http://$s3_bucket.s3.amazonaws.com/$s3_path/a/{$image["filename"]}.jpg\">high resolution version</a>\n";
+echo "                <a href=\"http://$s3_host/$s3_path/a/{$image["filename"]}.jpg\">high resolution version</a>\n";
 echo "            </div>\n";
 
 if (!empty($image["caption"])) {

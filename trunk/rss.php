@@ -11,9 +11,9 @@ header("Content-Type: application/xml; charset=ISO-8859-1");
 <?xml version="1.0" encoding="iso-8859-1" ?>
 <rss version="2.0"> 
     <channel> 
-        <title><?php echo $sappho_title; ?> -- recently added</title>
+        <title><?php echo $rss_title; ?></title>
         <link><?php echo $sappho_path; ?>/</link>
-        <description>view the most recently added photos.</description>
+        <description><?php echo $rss_description; ?></description>
         <language>English</language>
 
 <?php

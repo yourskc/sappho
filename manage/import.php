@@ -20,7 +20,7 @@ if (!empty($_POST)) {
 
     foreach ($id_listing as $id) {
 
-        $url = "http://$s3_host/$s3_path/c/$id.jpg";
+        $url = "http://$s3_host/$s3_path/a/$id.jpg";
         $tmp_file = "/tmp/sappho-$id.jpg";
 
         if (!$file_str = file_get_contents($url)) {
@@ -133,7 +133,7 @@ if (count($freshies) === 0) {
     foreach ($freshies as $id => $sizes) {
 
         echo "                        <tr>\n";
-        echo "                            <td><img src=\"http://$s3_host/$s3_path/c/$id.jpg\" alt=\"$id\" /></td>\n";
+        echo "                            <td><img src=\"http://$s3_host/$s3_path/a/$id.jpg\" alt=\"$id\" /></td>\n";
         echo "                            <td>\n";
         echo "                                <input type=\"text\" name=\"title-$id\" /><br />\n";
         echo "                                <textarea name=\"caption-$id\"></textarea><br />\n";

@@ -88,7 +88,7 @@ function file_listing() {
     $listing = array();
     $s3 = new S3($aws_access, $aws_secret);
     foreach ($s3->getBucket($s3_bucket, $s3_path."/") as $file) {
-        if (preg_match('@^.*/([abc])/([0-9]+)\.jpg$@i', $file['name'], $match)) {
+        if (preg_match('@^.*/([ab])/([0-9]+)\.jpg$@i', $file['name'], $match)) {
             $listing[$match[2]][$match[1]] = array('size' => $file['size'], 'time' => $file['time']);
         };
     };
@@ -109,7 +109,7 @@ function new_files() {
     $new_list = array();
     foreach(file_listing() as $id => $ver) {
         if (!in_array($id, $db_list)) {
-            if (!empty($ver['a']) && !empty($ver['b']) && !empty($ver['c'])) {
+            if (!empty($ver['a']) && !empty($ver['b'])) {
                 $new_list[$id] = $ver;
             };
         };

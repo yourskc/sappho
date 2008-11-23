@@ -60,7 +60,6 @@ echo "                iso: ".output($image["exif_isospeedratings"])."<br />\n";
 echo "                focal: ".output($image["exif_focallength"])." mm<br />\n";
 echo "                ".($image["exif_flash"]?"flash fired":"no flash")."<br />\n";
 echo "                ".output($image["exif_datetimeoriginal"])."<br />\n";
-echo "                <a href=\"http://$s3_host/$s3_path/a/{$image["filename"]}.jpg\">high resolution version</a>\n";
 echo "            </div>\n";
 
 if (!empty($image["caption"])) {

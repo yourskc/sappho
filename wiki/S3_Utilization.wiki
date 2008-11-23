@@ -1,4 +1,4 @@
-#summary How project sappho uses S3.
+﻿#summary How project sappho uses S3.
 #labels Phase-Deploy,Featured
 
 = Getting your photos into S3 =
@@ -7,17 +7,16 @@ You must resize and upload your photos manually, at present. Tools such as [http
 
 You'll need to choose a bucket and a path. If you'd like to store your photos in the location `http://BIG-BUCKET.s3.amazonaws.com/things/my_pictures/`, you must create a bucket named `BIG-BUCKET`. Your path would then be `things/my_pictures`.
 
-_sappho_ uses a very specific directory structure. Within your chosen path, you'll have three folders: `a`, `b`, and `c`.
-  * `a` contains full resolution images.
+_sappho_ uses a very specific directory structure. Within your chosen path, you'll have two folders: `a` and `b`.
+  * `a` contains images with a long side of 120px.
   * `b` contains images with a long side of 640px.
-  * `c` contains images with a long side of 120px.
 
-If you're uploading one image named `000001.jpg`, you'll need it in three sizes, all with the same filename, in each of the folders `a`, `b`, and `c`.
+If you're uploading one image named `00000001.jpg`, you'll need it in two sizes, both with the same filename, in both of the folders `a` and `b`.
 
 _sappho_ requires a numerical filename with the extension `.jpg`. These are examples of valid image filenames:
   * `0.jpg`
-  * `000001.jpg`
-  * `98765432109876543210.jpg`
+  * `00000001.jpg`
+  * `987654321098765432109876543210.jpg`
 These are examples of _invalid_ image filenames:
   * `000001.JPG`
   * `001jlr.jpg`

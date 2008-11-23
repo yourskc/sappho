@@ -101,7 +101,7 @@ while ($image = mysql_fetch_array($result)) {
     $y_pad = ($y < $thumbnail_size) ? ($thumbnail_size-$y)/2 : 0;
 
     echo "                    <li id=\"sortable_{$image["image_id"]}\">";
-    echo "<img src=\"http://$s3_host/$s3_path/c/{$image["filename"]}.jpg\" alt=\"{$image["title"]}\" style=\"margin: {$y_pad}px {$x_pad}px;\"/>";
+    echo "<img src=\"http://$s3_host/$s3_path/a/{$image["filename"]}.jpg\" alt=\"{$image["title"]}\" style=\"margin: {$y_pad}px {$x_pad}px;\"/>";
     echo "</li>\n";
 
 };

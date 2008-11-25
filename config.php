@@ -31,6 +31,7 @@ $entry_replace = array('&mdash;', '&hellip;', ' &nbsp; ');
 
 $rss_title = 'photo album: recently added';
 $rss_description = 'view the most recently added photos.';
+$rss_lang = 'en-us';
 
 $s3_bucket = 'some-bucket';
 $s3_path = 'path/to/s3/images';

@@ -14,7 +14,7 @@ header("Content-Type: application/xml; charset=ISO-8859-1");
         <title><?php echo $rss_title; ?></title>
         <link><?php echo $sappho_path; ?>/</link>
         <description><?php echo $rss_description; ?></description>
-        <language>English</language>
+        <language><?php echo $rss_lang; ?></language>
 
 <?php
 

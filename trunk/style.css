@@ -114,7 +114,7 @@ div.set_thumbnail {
     border-bottom: 1px dashed #ccc;
 }
 
-/* STYLES FOR PHOTO.PHP */
+/* STYLES FOR IMAGE.PHP */
 
 #photo {
     display: block;
@@ -147,6 +147,10 @@ div.set_thumbnail {
 #link_set {
     font-size: 0.8em;
     padding: 0 20px 0 0;
+}
+
+#img_license {
+    font-size: 0.8em;
 }
 
 /* MANAGEMENT BACK-END STYLES */

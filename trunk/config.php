@@ -19,6 +19,8 @@ $aws_secret = "123456789abcdefg";
 $sappho_path = 'http://www.domain.com/path/to/sappho';
 $sappho_title = 'photo album';
 
+$sappho_img_license = 'all rights reserved.';
+
 $num_sets_on_index = 3;
 $thumbnail_size = 120;
 $num_recent_photos = 12;

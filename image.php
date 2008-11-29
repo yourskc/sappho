@@ -97,6 +97,7 @@ if (mysql_num_rows($result) === 1) {
 };
 
 ?>
+            <div id="img_license"><br /><?php echo $sappho_img_license; ?></div>
         </div>
     </body>
 </html>

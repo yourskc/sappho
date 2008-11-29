@@ -73,7 +73,7 @@ function clean($text) {
  *****************/
 function output($text) {
     global $entry_find, $entry_replace;
-    $text = htmlentities($text, ENT_QUOTES, "ISO-8859-1", FALSE);
+    $text = htmlentities($text, ENT_QUOTES, "UTF-8", FALSE);
     $text = str_replace($entry_find, $entry_replace, $text);
     $text = nl2br($text);
     return $text;

@@ -6,16 +6,16 @@
 
 CREATE TABLE `photo_collection` (
   `collection_id` int(11) NOT NULL auto_increment,
-  `search_path` varchar(64) collate latin1_general_ci NOT NULL,
-  `title` text collate latin1_general_ci NOT NULL,
-  `body` longtext collate latin1_general_ci NOT NULL,
+  `search_path` varchar(64) collate utf8_unicode_ci NOT NULL,
+  `title` text collate utf8_unicode_ci NOT NULL,
+  `body` longtext collate utf8_unicode_ci NOT NULL,
   `sets` int(11) NOT NULL,
   `sort` tinyint(4) NOT NULL,
   PRIMARY KEY  (`collection_id`),
   KEY `search_path` (`search_path`),
   KEY `sort_order` (`sort`),
   KEY `sets` (`sets`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -26,25 +26,25 @@ CREATE TABLE `photo_collection` (
 CREATE TABLE `photo_image` (
   `image_id` int(11) NOT NULL auto_increment,
   `set_id` int(11) NOT NULL,
-  `filename` varchar(32) NOT NULL,
-  `title` text NOT NULL,
-  `caption` text NOT NULL,
+  `filename` varchar(32) collate utf8_unicode_ci NOT NULL,
+  `title` text collate utf8_unicode_ci NOT NULL,
+  `caption` text collate utf8_unicode_ci NOT NULL,
   `date_imported` int(11) NOT NULL,
   `sort` mediumint(9) NOT NULL default '0',
-  `exif_cameramodel` varchar(128) NOT NULL,
-  `exif_exposuretime` varchar(128) NOT NULL,
-  `exif_fnumber` varchar(128) NOT NULL,
-  `exif_isospeedratings` varchar(128) NOT NULL,
-  `exif_focallength` varchar(128) NOT NULL,
-  `exif_flash` varchar(128) NOT NULL,
-  `exif_datetimeoriginal` varchar(128) NOT NULL,
+  `exif_cameramodel` varchar(128) collate utf8_unicode_ci NOT NULL,
+  `exif_exposuretime` varchar(128) collate utf8_unicode_ci NOT NULL,
+  `exif_fnumber` varchar(128) collate utf8_unicode_ci NOT NULL,
+  `exif_isospeedratings` varchar(128) collate utf8_unicode_ci NOT NULL,
+  `exif_focallength` varchar(128) collate utf8_unicode_ci NOT NULL,
+  `exif_flash` varchar(128) collate utf8_unicode_ci NOT NULL,
+  `exif_datetimeoriginal` varchar(128) collate utf8_unicode_ci NOT NULL,
   `thumb_width` int(11) NOT NULL,
   `thumb_height` int(11) NOT NULL,
   PRIMARY KEY  (`image_id`),
   KEY `set_id` (`set_id`),
   KEY `date_imported` (`date_imported`),
   KEY `set_order` (`sort`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -55,13 +55,13 @@ CREATE TABLE `photo_image` (
 CREATE TABLE `photo_set` (
   `set_id` int(11) NOT NULL auto_increment,
   `collection_id` int(11) NOT NULL,
-  `search_path` varchar(64) collate latin1_general_ci NOT NULL,
-  `title` text collate latin1_general_ci NOT NULL,
-  `body` text collate latin1_general_ci NOT NULL,
+  `search_path` varchar(64) collate utf8_unicode_ci NOT NULL,
+  `title` text collate utf8_unicode_ci NOT NULL,
+  `body` text collate utf8_unicode_ci NOT NULL,
   `images` int(11) NOT NULL default '0',
   `date_updated` int(11) NOT NULL default '0',
   PRIMARY KEY  (`set_id`),
   UNIQUE KEY `search_path` (`search_path`),
   KEY `collection_id` (`collection_id`),
   KEY `photos` (`images`,`date_updated`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

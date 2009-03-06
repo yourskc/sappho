@@ -53,7 +53,7 @@ echo "            <img src=\"http://$s3_host/$s3_path/b/{$image["filename"]}.jpg
 
 echo "            <div id=\"photo_info\">\n";
 echo "                <div id=\"title\">photo information</div>\n";
-echo "                ".output($image["exif_cameramodel"])."<br />\n";
+echo "                ".output(strtolower($image["exif_cameramodel"]))."<br />\n";
 echo "                shutter: ".output($image["exif_exposuretime"])." s<br />\n";
 echo "                <i>f</i>: ".output($image["exif_fnumber"])."<br />\n";
 echo "                iso: ".output($image["exif_isospeedratings"])."<br />\n";

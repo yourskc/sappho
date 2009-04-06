@@ -80,6 +80,16 @@ function output($text) {
 };
 
 
+/**************
+ * FORMAT XML *
+ **************/
+function outputxml($text) {
+    $find = array('&',    '<',   '>',   '"'     );
+    $repl = array('&amp;','&lt;','&gt;','&quot;');
+    return str_replace($find, $repl, $text);
+};
+
+
 /**************************************
  * LIST FILES FROM S3 BUCKET AND PATH *
  **************************************/

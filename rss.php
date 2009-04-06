@@ -5,19 +5,6 @@
  *********************************/
 require_once "global.php";
 
-header("Content-Type: application/xml; charset=utf-8");
-
-?>
-<?xml version="1.0" encoding="utf-8" ?>
-<rss version="2.0"> 
-    <channel> 
-        <title><?php echo $rss_title; ?></title>
-        <link><?php echo $sappho_path; ?>/</link>
-        <description><?php echo $rss_description; ?></description>
-        <language><?php echo $rss_lang; ?></language>
-
-<?php
-
 $sql = "SELECT image_id,            ".
        "       filename,            ".
        "       title,               ".
@@ -28,15 +15,44 @@ $sql = "SELECT image_id,            ".
        "ORDER BY date_imported DESC ".
        "LIMIT 20                    ";
 if (!$result = mysql_query($sql)) print_error();
+
+header("Content-Type: application/xml; charset=utf-8");
+
+echo <<<EOF
+<?xml version="1.0" encoding="utf-8" ?>
+<rss version="2.0"> 
+    <channel> 
+        <title>{$rss_title}</title>
+        <link>{$sappho_path}</link>
+        <description>{$rss_description}</description>
+        <language>{$rss_lang}</language>
+
+EOF;
+
 while ($image = mysql_fetch_array($result)) {
 
-?>
+    $title = outputxml($image['title']);
+    $url = outputxml($sappho_path.'/image/'.$image['image_id'].'/');
+    $caption = empty($image['caption']) ? '' : "\n                <br /><br />".output($image['caption']);
+    $description = <<<EOF
+                <img src="http://{$s3_host}/{$s3_path}/a/{$image['filename']}.jpg"
+                     alt="{$image['title']}"
+                     width="{$image['thumb_width']}"
+                     height="{$image['thumb_height']}" />{$caption}
+EOF;
+    $description = outputxml($description);
+
+    echo <<<EOF
         <item>
-            <title><?php echo output($image["title"]); ?></title>
-            <link><?php echo $sappho_path."/image/".$image["image_id"]; ?>/</link>
-            <description><?php echo(htmlentities("<img src=\"http://$s3_host/$s3_path/a/{$image["filename"]}.jpg\" alt=\"{$image["title"]}\" width=\"{$image["thumb_width"]}\" height=\"{$image["thumb_height"]}\" />")); ?> <?php echo htmlentities($image["caption"], ENT_QUOTES, "ISO-8859-1", FALSE); ?></description>
+            <title>{$title}</title>
+            <link>{$url}</link>
+            <guid>{$url}</guid>
+            <description>
+{$description}
+            </description>
         </item>
-<?php
+
+EOF;
 
 };
 

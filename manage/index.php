@@ -3,6 +3,7 @@
 /*********************************
  * GET GLOBAL VARS AND FUNCTIONS *
  *********************************/
+define('SAPPHO_HTTPS', TRUE);
 require_once "../global.php";
 
 header('Content-Type: text/html; charset=utf-8');

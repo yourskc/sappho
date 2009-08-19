@@ -57,8 +57,8 @@ while ($image = mysql_fetch_array($result)) {
 
     $x = $image["thumb_width"];
     $y = $image["thumb_height"];
-    $x_pad = ($x < $thumbnail_size) ? ($thumbnail_size-$x)/2 : 0;
-    $y_pad = ($y < $thumbnail_size) ? ($thumbnail_size-$y)/2 : 0;
+    $x_pad = ($x < $thumbnail_size) ? floor(($thumbnail_size-$x)/2) : 0;
+    $y_pad = ($y < $thumbnail_size) ? floor(($thumbnail_size-$y)/2) : 0;
 
     echo "            <div class=\"set_thumbnail\" title=\"".output($image["title"])."\">";
     echo "<a href=\"$sappho_path/image/{$image["image_id"]}/\">";

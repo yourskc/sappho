@@ -3,7 +3,7 @@
 /*********************************
  * GET GLOBAL VARS AND FUNCTIONS *
  *********************************/
-define('SAPPHO_HTTPS', TRUE);
+define('SAPPHO_MANAGE', TRUE);
 require_once "../global.php";
 
 

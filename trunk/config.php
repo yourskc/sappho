@@ -21,6 +21,8 @@ $sappho_title = 'photo album';
 
 $sappho_img_license = 'all rights reserved.';
 
+$sappho_manage_https = FALSE;
+
 $num_sets_on_index = 3;
 $thumbnail_size = 120;
 $num_recent_photos = 12;

@@ -36,7 +36,7 @@ $rss_description = 'view the most recently added photos.';
 $rss_lang = 'en-us';
 
 $s3_bucket = 'some-bucket';
-$s3_path = 'path/to/s3/images';
+$s3_path = 'path/to/s3/images/';
 $s3_host = $s3_bucket.'.s3.amazonaws.com';
 
 ?>

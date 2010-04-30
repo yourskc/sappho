@@ -105,7 +105,7 @@ function file_listing() {
     global $s3_bucket, $s3_path;
     $listing = array();
     $s3 = new S3($aws_access, $aws_secret);
-    foreach ($s3->getBucket($s3_bucket, $s3_path."/") as $file) {
+    foreach ($s3->getBucket($s3_bucket, $s3_path) as $file) {
         if (preg_match('@^.*/([ab])/([0-9]+)\.jpg$@i', $file['name'], $match)) {
             $listing[$match[2]][$match[1]] = array('size' => $file['size'], 'time' => $file['time']);
         };

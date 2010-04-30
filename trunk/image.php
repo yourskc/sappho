@@ -49,7 +49,7 @@ $image = mysql_fetch_array($result);
             <h2><?php echo output($image["title"]); ?></h2>
 <?php
 
-echo "            <img src=\"http://$s3_host/$s3_path/b/{$image["filename"]}.jpg\" alt=\"".output($image["title"])."\" id=\"photo\" />\n";
+echo "            <img src=\"http://$s3_host/{$s3_path}b/{$image["filename"]}.jpg\" alt=\"".output($image["title"])."\" id=\"photo\" />\n";
 
 echo "            <div id=\"photo_info\">\n";
 echo "                <div id=\"title\">photo information</div>\n";

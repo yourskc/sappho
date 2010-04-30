@@ -25,11 +25,11 @@ mb_internal_encoding('UTF-8');
  *******************************/
 require_once "config.php";
 
-if (SAPPHO_HTTPS === TRUE) {
+date_default_timezone_set($date_timezone);
+
+if ($sappho_manage_https === TRUE && SAPPHO_MANAGE === TRUE) {
     $sappho_path = str_replace('http', 'https', $sappho_path);
 };
-
-date_default_timezone_set($date_timezone);
 
 
 /********************************************************

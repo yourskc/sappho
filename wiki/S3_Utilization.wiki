@@ -30,3 +30,7 @@ Once you get the two sizes uploaded for a given file name, the photo should appe
 Perhaps you'd like to code some shell scripts that automatically resize and upload your photos! That would be great!
 
 When we have more time to code, such scripts may become a part of this project's code base. (See [http://code.google.com/p/sappho/issues/detail?id=24 Issue 24].)
+
+= Required permissions =
+
+_sappho_ needs access to list bucket contents.
